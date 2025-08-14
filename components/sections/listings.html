@@ -1,0 +1,172 @@
+<section class="mb-12">
+  <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+    <div>
+      <h2 class="text-2xl font-bold text-gray-800">Ofertas disponibles</h2>
+      <p class="text-gray-600">Encuentra comida de calidad a precios increíbles</p>
+    </div>
+
+    <div class="mt-4 md:mt-0 flex flex-wrap gap-2">
+      <div class="relative">
+        <select class="bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm">
+          <option>Todos los tipos</option>
+          <option>Restaurantes</option>
+          <option>Panaderías</option>
+          <option>Supermercados</option>
+          <option>Cafeterías</option>
+        </select>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+          <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+        </div>
+      </div>
+
+      <div class="relative">
+        <select class="bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm">
+          <option>Más recientes</option>
+          <option>Precio: Menor a mayor</option>
+          <option>Precio: Mayor a menor</option>
+          <option>Mayor descuento</option>
+        </select>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+          <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+        </div>
+      </div>
+
+      <button class="bg-green-100 text-green-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-green-200">
+        <i class="fas fa-filter mr-1"></i> Filtros
+      </button>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <!-- 1 -->
+    <div class="food-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+      <img src="https://images.unsplash.com/photo-1576194555759-22b1e99820f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Sándwich de pollo" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <div class="flex items-center mb-2">
+          <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">50% descuento</span>
+          <span class="ml-auto text-xs text-gray-500">Hace 2 horas</span>
+        </div>
+        <h3 class="font-semibold text-gray-800 mb-1">Pack de sándwiches variados</h3>
+        <p class="text-gray-600 text-sm mb-2 line-clamp-2">Deliciosos sándwiches recién hechos. Perfectos para llevar, incluye vegetarianos.</p>
+        <div class="flex items-center mb-3">
+          <span class="text-yellow-500 mr-1"><i class="fas fa-star"></i></span>
+          <span class="text-sm text-gray-700">4.8</span>
+          <span class="text-xs text-gray-500 ml-1">(32 reseñas)</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-gray-400 text-xs line-through">$120</span>
+            <span class="text-green-600 font-semibold ml-1">$60</span>
+          </div>
+          <span class="text-sm text-gray-600">Quedan: 4</span>
+        </div>
+        <button data-open-detail class="mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition">
+          Ver detalle
+        </button>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="food-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+      <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Pasteles" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <div class="flex items-center mb-2">
+          <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">30% descuento</span>
+          <span class="ml-auto text-xs text-gray-500">Hace 5 horas</span>
+        </div>
+        <h3 class="font-semibold text-gray-800 mb-1">Pasteles variados</h3>
+        <p class="text-gray-600 text-sm mb-2 line-clamp-2">Deliciosos pasteles del día. Incluye chocolate, zanahoria y red velvet.</p>
+        <div class="flex items-center mb-3">
+          <span class="text-yellow-500 mr-1"><i class="fas fa-star"></i></span>
+          <span class="text-sm text-gray-700">4.6</span>
+          <span class="text-xs text-gray-500 ml-1">(19 reseñas)</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-gray-400 text-xs line-through">$180</span>
+            <span class="text-green-600 font-semibold ml-1">$126</span>
+          </div>
+          <span class="text-sm text-gray-600">Quedan: 6</span>
+        </div>
+        <button data-open-detail class="mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition">
+          Ver detalle
+        </button>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="food-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+      <img src="https://images.unsplash.com/photo-1600335895229-6e75511892c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Ensaladas" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <div class="flex items-center mb-2">
+          <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">40% descuento</span>
+          <span class="ml-auto text-xs text-gray-500">Hace 30 min</span>
+        </div>
+        <h3 class="font-semibold text-gray-800 mb-1">Ensaladas frescas</h3>
+        <p class="text-gray-600 text-sm mb-2 line-clamp-2">Ensaladas preparadas con productos frescos del día. Opciones veganas disponibles.</p>
+        <div class="flex items-center mb-3">
+          <span class="text-yellow-500 mr-1"><i class="fas fa-star"></i></span>
+          <span class="text-sm text-gray-700">4.9</span>
+          <span class="text-xs text-gray-500 ml-1">(27 reseñas)</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-gray-400 text-xs line-through">$150</span>
+            <span class="text-green-600 font-semibold ml-1">$90</span>
+          </div>
+          <span class="text-sm text-gray-600">Quedan: 3</span>
+        </div>
+        <button data-open-detail class="mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition">
+          Ver detalle
+        </button>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="food-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+      <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Pizza" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <div class="flex items-center mb-2">
+          <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">25% descuento</span>
+          <span class="ml-auto text-xs text-gray-500">Hace 1 hora</span>
+        </div>
+        <h3 class="font-semibold text-gray-800 mb-1">Pizza artesanal</h3>
+        <p class="text-gray-600 text-sm mb-2 line-clamp-2">Pizza casera con masa artesanal. Variedades: margarita, vegetariana y pepperoni.</p>
+        <div class="flex items-center mb-3">
+          <span class="text-yellow-500 mr-1"><i class="fas fa-star"></i></span>
+          <span class="text-sm text-gray-700">4.7</span>
+          <span class="text-xs text-gray-500 ml-1">(42 reseñas)</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-gray-400 text-xs line-through">$200</span>
+            <span class="text-green-600 font-semibold ml-1">$150</span>
+          </div>
+          <span class="text-sm text-gray-600">Quedan: 2</span>
+        </div>
+        <button data-open-detail class="mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition">
+          Ver detalle
+        </button>
+      </div>
+    </div>
+
+    <!-- Crear oferta -->
+    <div class="food-card bg-gradient-to-br from-blue-50 to-green-50 rounded-xl overflow-hidden shadow-sm border border-dashed border-green-300 flex flex-col justify-center items-center p-8">
+      <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+        <i class="fas fa-plus text-green-600 text-xl"></i>
+      </div>
+      <h3 class="font-semibold text-gray-800 mb-2 text-center">Crear nueva oferta</h3>
+      <p class="text-gray-600 text-sm text-center mb-4">¡Comparte tus excedentes de comida y ayuda a reducir el desperdicio!</p>
+      <button id="openCreateListing" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md font-medium transition">
+        Publicar alimentos
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-8 flex justify-center">
+    <button class="bg-white text-green-600 border border-green-200 px-6 py-2 rounded-full font-medium hover:bg-green-50 transition flex items-center">
+      Cargar más ofertas <i class="fas fa-arrow-down ml-2"></i>
+    </button>
+  </div>
+</section>

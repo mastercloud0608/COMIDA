@@ -1,0 +1,71 @@
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between py-3">
+      <!-- Logo -->
+      <a href="#" class="flex items-center space-x-2">
+        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+          </svg>
+        </span>
+        <span class="text-xl font-semibold text-green-600">FoodSaver</span>
+      </a>
+
+      <!-- Nav (desktop) -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#" class="nav-link nav-link--active text-sm">Inicio</a>
+        <a href="#" class="nav-link text-gray-600 hover:text-green-500 text-sm">Explorar</a>
+        <a href="#" class="nav-link text-gray-600 hover:text-green-500 text-sm">Mis Pedidos</a>
+        <a href="#" class="nav-link text-gray-600 hover:text-green-500 text-sm">Dashboard</a>
+        <a href="#" class="nav-link text-gray-600 hover:text-green-500 text-sm">Perfil</a>
+              <a class="btn btn-primary" href="register.html">
+        <i class="fa-regular fa-user"></i> Registrarse
+      </a>
+
+      </nav>
+
+      <!-- Acciones derecha -->
+      <div class="flex items-center space-x-4">
+        <!-- Notificaciones con badge -->
+        <button id="notificationBtn" class="notif-btn text-gray-500 hover:text-green-600">
+          <i class="fa-regular fa-bell text-lg"></i>
+          <span class="notif-badge">2</span>
+        </button>
+
+        <!-- Usuario + menú -->
+        <div class="relative">
+          <button id="userMenuBtn" class="flex items-center space-x-2 text-gray-800 hover:text-green-600">
+            <img
+              src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+              alt="María" class="w-8 h-8 rounded-full object-cover ring-2 ring-green-200">
+            <span class="hidden md:inline text-sm font-medium">María</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+
+          <!-- Dropdown del usuario -->
+          <div id="userMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden">
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50">Mi Perfil</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50">Configuración</a>
+            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Cerrar Sesión</a>
+          </div>
+        </div>
+
+        <!-- Toggle menú móvil -->
+        <button id="mobileMenuBtn" class="md:hidden text-gray-600">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú móvil -->
+    <div id="mobileMenu" class="md:hidden hidden pb-4">
+      <nav class="flex flex-col space-y-3">
+        <a href="#" class="text-green-500 font-semibold">Inicio</a>
+        <a href="#" class="text-gray-600">Explorar</a>
+        <a href="#" class="text-gray-600">Mis Pedidos</a>
+        <a href="#" class="text-gray-600">Dashboard</a>
+        <a href="#" class="text-gray-600">Perfil</a>
+      </nav>
+    </div>
+  </div>
+</header>

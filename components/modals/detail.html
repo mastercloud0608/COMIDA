@@ -1,0 +1,87 @@
+<div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+  <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div class="flex flex-col md:flex-row">
+      <div class="md:w-1/2">
+        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Pasteles variados" class="w-full h-full object-cover rounded-l-xl">
+      </div>
+
+      <div class="p-6 md:w-1/2">
+        <div class="flex justify-between items-start mb-4">
+          <h3 class="text-xl font-bold text-gray-800">Pasteles variados</h3>
+          <button id="closeDetailModal" class="text-gray-500 hover:text-gray-700"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="flex items-center mb-4">
+          <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">30% descuento</span>
+          <span class="ml-2 text-xs text-gray-500">Hace 5 horas</span>
+          <div class="ml-auto flex items-center">
+            <span class="text-yellow-500 mr-1"><i class="fas fa-star"></i></span>
+            <span class="text-sm text-gray-700">4.6</span>
+            <span class="text-xs text-gray-500 ml-1">(19 reseñas)</span>
+          </div>
+        </div>
+
+        <p class="text-gray-600 text-sm mb-6">
+          Deliciosos pasteles del día. Incluye chocolate, zanahoria y red velvet. Recién horneados esta mañana. El pack incluye 3 porciones individuales.
+        </p>
+
+        <div class="mb-6">
+          <h4 class="text-sm font-semibold text-gray-700 mb-2">Información del vendedor</h4>
+          <div class="flex items-center">
+            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Vendedor" class="w-10 h-10 rounded-full object-cover">
+            <div class="ml-3">
+              <p class="text-gray-800 font-medium">Panadería El Buen Sabor</p>
+              <p class="text-gray-500 text-xs">Colonia Roma, CDMX</p>
+            </div>
+            <button data-open-chat class="ml-auto text-green-600 hover:text-green-700">
+              <i class="fas fa-comments"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <h4 class="text-sm font-semibold text-gray-700 mb-2">Detalles</h4>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="bg-gray-50 p-2 rounded-md">
+              <p class="text-xs text-gray-500">Cantidad disponible</p>
+              <p class="text-gray-800 font-medium">6 packs</p>
+            </div>
+            <div class="bg-gray-50 p-2 rounded-md">
+              <p class="text-xs text-gray-500">Recoger antes de</p>
+              <p class="text-gray-800 font-medium">Hoy, 20:00</p>
+            </div>
+            <div class="bg-gray-50 p-2 rounded-md">
+              <p class="text-xs text-gray-500">Contiene</p>
+              <p class="text-gray-800 font-medium">Gluten, lácteos, huevo</p>
+            </div>
+            <div class="bg-gray-50 p-2 rounded-md">
+              <p class="text-xs text-gray-500">Categoría</p>
+              <p class="text-gray-800 font-medium">Panadería</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <span class="text-gray-400 text-sm line-through">$180</span>
+            <span class="text-green-600 text-xl font-bold ml-1">$126</span>
+          </div>
+          <div class="flex items-center">
+            <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center"><i class="fas fa-minus"></i></button>
+            <span class="mx-4 font-semibold">1</span>
+            <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+
+        <div class="flex space-x-4">
+          <button class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-md font-medium transition flex items-center justify-center">
+            <i class="far fa-bookmark mr-2"></i> Guardar
+          </button>
+          <button class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition">
+            Reservar ahora
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
