@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FoodSaver — Mis pedidos</title>
+
+  <!-- Fuente e iconos (opcional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Estilos globales de tu proyecto -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <!-- Estilos específicos de esta página -->
+  <link rel="stylesheet" href="assets/css/components/pedidos.css">
+</head>
+<body>
+
+  <!-- Header (usa las clases de styles.css) -->
+  <header class="header">
+    <div class="container header-wrap">
+      <a class="brand" href="index.html">
+        <span class="logo">II</span>
+        FoodSaver
+      </a>
+
+      <nav class="nav">
+        <a href="index.html">Inicio</a>
+        <a href="sections/listings.html">Explorar</a>
+        <a href="pedidos.html" class="active">Mis Pedidos</a>
+        <a href="#">Dashboard</a>
+        <a href="#">Perfil</a>
+        <a class="btn btn-primary" href="register.html">
+          <i class="fa-regular fa-user"></i> Registrarse
+        </a>
+      </nav>
+
+      <div class="nav">
+        <button class="notif-btn btn-ghost" title="Notificaciones">
+          <i class="fa-regular fa-bell"></i>
+          <span class="notif-badge">2</span>
+        </button>
+        <img class="avatar" alt="María"
+             src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=200&auto=format&fit=crop">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- Título + resumen -->
+      <section class="spacer-2"></section>
+      <section class="page-head">
+        <div>
+          <h1 class="page-title">Mis pedidos</h1>
+          <p class="page-subtitle">Consulta el estado de tus compras, descarga recibos y vuelve a pedir.</p>
+        </div>
+
+        <div class="orders-summary">
+          <div class="card card-pad summary-box">
+            <p class="summary-label">Total</p>
+            <p class="summary-num">18</p>
+          </div>
+          <div class="card card-pad summary-box">
+            <p class="summary-label">Pendientes</p>
+            <p class="summary-num text-amber">2</p>
+          </div>
+          <div class="card card-pad summary-box">
+            <p class="summary-label">Confirmados</p>
+            <p class="summary-num text-blue">3</p>
+          </div>
+          <div class="card card-pad summary-box">
+            <p class="summary-label">Completados</p>
+            <p class="summary-num text-emerald">12</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filtros (solo UI) -->
+      <section class="card card-pad filters">
+        <div class="form-grid cols-2">
+          <div class="form-group">
+            <label class="label" for="q">Buscar</label>
+            <div class="input-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input id="q" class="input" type="search" placeholder="Panadería, código de pedido, producto…">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="label" for="estado">Estado</label>
+            <select id="estado" class="select">
+              <option value="">Todos</option>
+              <option>Pendiente</option>
+              <option>Confirmado</option>
+              <option>Completado</option>
+              <option>Cancelado</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid cols-3 dates">
+          <div class="form-group">
+            <label class="label" for="d1">Desde</label>
+            <input id="d1" class="input" type="date">
+          </div>
+          <div class="form-group">
+            <label class="label" for="d2">Hasta</label>
+            <input id="d2" class="input" type="date">
+          </div>
+          <div class="form-group align-end">
+            <button class="btn btn-primary w-full"><i class="fa-solid fa-filter"></i> Aplicar filtros</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tabs (solo CSS) -->
+      <section class="card orders-tabs">
+        <!-- Radios ocultos -->
+        <input checked id="tab-todos"       name="tabs" type="radio" class="tab-radio">
+        <input id="tab-pendientes" name="tabs" type="radio" class="tab-radio">
+        <input id="tab-confirmados" name="tabs" type="radio" class="tab-radio">
+        <input id="tab-completados" name="tabs" type="radio" class="tab-radio">
+        <input id="tab-cancelados" name="tabs" type="radio" class="tab-radio">
+
+        <!-- Etiquetas -->
+        <div class="tabs-nav">
+          <label for="tab-todos" class="tab-label">Todos</label>
+          <label for="tab-pendientes" class="tab-label">Pendientes</label>
+          <label for="tab-confirmados" class="tab-label">Confirmados</label>
+          <label for="tab-completados" class="tab-label">Completados</label>
+          <label for="tab-cancelados" class="tab-label">Cancelados</label>
+        </div>
+
+        <!-- Contenido: TODOS -->
+        <div class="tab-panel" data-tab="tab-todos">
+          <div class="orders-grid">
+            <!-- Card 1 -->
+            <article class="order-card">
+              <div class="order-head">
+                <div class="order-seller">
+                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=200&auto=format&fit=crop" alt="">
+                  <div>
+                    <h3 class="seller-name">Panadería El Buen Sabor</h3>
+                    <p class="order-meta">Pedido #FS-10234 · 12 mar, 18:25</p>
+                  </div>
+                </div>
+                <span class="status-badge status-pending">Pendiente</span>
+              </div>
+
+              <p class="order-desc">Pack de pasteles (3 uds) · Retiro hoy 20:00 · Col. Roma</p>
+
+              <div class="order-foot">
+                <div>
+                  <span class="price-old">$180</span>
+                  <span class="price-new">$126</span>
+                </div>
+                <div class="order-actions">
+                  <a class="btn btn-secondary btn-sm" href="#">Ver detalle</a>
+                  <a class="btn btn-ghost btn-sm" href="#">Cancelar</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="order-card">
+              <div class="order-head">
+                <div class="order-seller">
+                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1593504049359-74330189a345?q=80&w=200&auto=format&fit=crop" alt="">
+                  <div>
+                    <h3 class="seller-name">Pizzería La Artesana</h3>
+                    <p class="order-meta">Pedido #FS-10219 · 9 mar, 13:10</p>
+                  </div>
+                </div>
+                <span class="status-badge status-confirmed">Confirmado</span>
+              </div>
+
+              <p class="order-desc">Pizza margarita (1) + bebida · Retiro hoy 21:30 · Centro</p>
+
+              <div class="order-foot">
+                <div>
+                  <span class="price-old">$200</span>
+                  <span class="price-new">$150</span>
+                </div>
+                <div class="order-actions">
+                  <a class="btn btn-secondary btn-sm" href="#">Ver detalle</a>
+                  <a class="btn btn-ghost btn-sm" href="#">Ver QR</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="order-card">
+              <div class="order-head">
+                <div class="order-seller">
+                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1600335895229-6e75511892c8?q=80&w=200&auto=format&fit=crop" alt="">
+                  <div>
+                    <h3 class="seller-name">Green Bowl</h3>
+                    <p class="order-meta">Pedido #FS-10188 · 28 feb, 19:40</p>
+                  </div>
+                </div>
+                <span class="status-badge status-completed">Completado</span>
+              </div>
+
+              <p class="order-desc">Ensalada fresca + aderezo · Retirado · Condesa</p>
+
+              <div class="order-foot">
+                <div>
+                  <span class="price-old">$150</span>
+                  <span class="price-new">$90</span>
+                </div>
+                <div class="order-actions">
+                  <a class="btn btn-secondary btn-sm" href="#">Recibo</a>
+                  <a class="btn btn-primary btn-sm" href="#">Volver a pedir</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Contenido: PENDIENTES -->
+        <div class="tab-panel" data-tab="tab-pendientes">
+          <div class="orders-grid">
+            <article class="order-card">
+              <div class="order-head">
+                <div class="order-seller">
+                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1576194555759-22b1e99820f1?q=80&w=200&auto=format&fit=crop" alt="">
+                  <div>
+                    <h3 class="seller-name">Sandwich Club</h3>
+                    <p class="order-meta">Pedido #FS-10241 · 13 mar, 12:05</p>
+                  </div>
+                </div>
+                <span class="status-badge status-pending">Pendiente</span>
+              </div>
+              <p class="order-desc">Pack de sándwiches variados · Retiro 19:30 · Norte</p>
+              <div class="order-foot">
+                <div><span class="price-old">$120</span><span class="price-new">$60</span></div>
+                <div class="order-actions">
+                  <a class="btn btn-secondary btn-sm" href="#">Ver detalle</a>
+                  <a class="btn btn-ghost btn-sm" href="#">Cancelar</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Contenido: CONFIRMADOS -->
+        <div class="tab-panel" data-tab="tab-confirmados">
+          <div class="orders-grid">
+            <article class="order-card">
+              <div class="order-head">
+                <div class="order-seller">
+                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1593504049359-74330189a345?q=80&w=200&auto=format&fit=crop" alt="">
+                  <div>
+                    <h3 class="seller-name">Pizzería La Artesana</h3>
+                    <p class="order-meta">Pedido #FS-10219 · 9 mar, 13:10</p>
+                  </div>
+                </div>
+                <span class="status-badge status-confirmed">Confirmado</span>
+              </div>
+              <p class="order-desc">Pizza margarita (1) + bebida · Retiro 21:30 · Centro</p>
+              <div class="order-foot">
+                <div><span class="price-old">$200</span><span class="price-new">$150</span></div>
+                <div class="order-actions">
+                  <a class="btn btn-secondary btn-sm" href="#">Ver detalle</a>
+                  <a class="btn btn-ghost btn-sm" href="#">Ver QR</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Contenido: COMPLETADOS -->
+        <div class="tab-panel" data-tab="tab-completados">
+          <div class="orders-grid">
+            <article class="order-card">
+              <div class="order-head">
+                <div class="order-seller">
+                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1600335895229-6e75511892c8?q=80&w=200&auto=format&fit=crop" alt="">
+                  <div>
+                    <h3 class="seller-name">Green Bowl</h3>
+                    <p class="order-meta">Pedido #FS-10188 · 28 feb, 19:40</p>
+                  </div>
+                </div>
+                <span class="status-badge status-completed">Completado</span>
+              </div>
+              <p class="order-desc">Ensalada fresca + aderezo · Retirado · Condesa</p>
+              <div class="order-foot">
+                <div><span class="price-old">$150</span><span class="price-new">$90</span></div>
+                <div class="order-actions">
+                  <a class="btn btn-secondary btn-sm" href="#">Recibo</a>
+                  <a class="btn btn-primary btn-sm" href="#">Valorar</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Contenido: CANCELADOS -->
+        <div class="tab-panel" data-tab="tab-cancelados">
+          <div class="orders-grid">
+            <article class="order-card">
+              <div class="order-head">
+                <div class="order-seller">
+                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=200&auto=format&fit=crop" alt="">
+                  <div>
+                    <h3 class="seller-name">Café Central</h3>
+                    <p class="order-meta">Pedido #FS-10120 · 11 feb, 09:05</p>
+                  </div>
+                </div>
+                <span class="status-badge status-cancelled">Cancelado</span>
+              </div>
+              <p class="order-desc">Pack desayuno · Cancelado por el usuario</p>
+              <div class="order-foot">
+                <div><span class="price-new">$0</span></div>
+                <div class="order-actions">
+                  <a class="btn btn-primary btn-sm" href="#">Volver a pedir</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Paginación (decorativa) -->
+      <nav class="pagination">
+        <a href="#" class="btn btn-ghost">Anterior</a>
+        <a href="#" class="btn btn-primary">1</a>
+        <a href="#" class="btn btn-ghost">2</a>
+        <a href="#" class="btn btn-ghost">3</a>
+        <a href="#" class="btn btn-ghost">Siguiente</a>
+      </nav>
+
+      <section class="spacer-2"></section>
+    </div>
+  </main>
+
+  <footer class="footer-mini">
+    <div class="container">&copy; 2025 FoodSaver. Todos los derechos reservados.</div>
+  </footer>
+</body>
+</html>

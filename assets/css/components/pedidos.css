@@ -1,0 +1,120 @@
+/* ====== Pedidos (solo CSS, sin frameworks) ====== */
+
+body{ background: linear-gradient(120deg,#F0FDF4 0%, #EFF6FF 100%) }
+
+/* Cabecera de la página */
+.page-head{
+  display:grid; gap:1rem; align-items:end;
+  grid-template-columns: 1fr;
+}
+@media (min-width:960px){
+  .page-head{ grid-template-columns: 1.2fr .8fr; }
+}
+.page-title{ margin:.25rem 0 .25rem; font-size:2rem; font-weight:700 }
+.page-subtitle{ margin:0; color:#4B5563 }
+
+/* Resumen */
+.orders-summary{
+  display:grid; gap:.75rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 900px){ .orders-summary{ grid-template-columns: repeat(2,1fr) } }
+@media (max-width: 520px){ .orders-summary{ grid-template-columns: 1fr } }
+
+.summary-box{ text-align:center }
+.summary-label{ margin:0; font-size:.8rem; color:#6B7280 }
+.summary-num{
+  margin:.25rem 0 0; font-size:1.6rem; font-weight:700; color:#111827
+}
+.text-amber{ color:#F59E0B }
+.text-blue{ color:#3B82F6 }
+.text-emerald{ color:#059669 }
+
+/* Filtros */
+.filters{ margin-top:1rem }
+.input-icon{ position:relative }
+.input-icon i{
+  position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#9CA3AF
+}
+.input-icon .input{ padding-left:36px }
+.align-end{ display:flex; align-items:flex-end }
+.w-full{ width:100% }
+
+/* Tabs */
+.orders-tabs{ overflow:hidden; border-radius:16px; }
+.tab-radio{ display:none }
+
+.tabs-nav{
+  display:flex; gap:.25rem; border-bottom:1px solid var(--border);
+  padding:.4rem; background:#fff; flex-wrap:wrap
+}
+.tab-label{
+  cursor:pointer; padding:.45rem .8rem; border-radius:9999px;
+  font-weight:600; font-size:.9rem; color:#6B7280;
+}
+.tab-label:hover{ background:#F0FDFA; color:#059669 }
+
+/* Estado activo del tab */
+#tab-todos:checked       ~ .tabs-nav label[for="tab-todos"],
+#tab-pendientes:checked  ~ .tabs-nav label[for="tab-pendientes"],
+#tab-confirmados:checked ~ .tabs-nav label[for="tab-confirmados"],
+#tab-completados:checked ~ .tabs-nav label[for="tab-completados"],
+#tab-cancelados:checked  ~ .tabs-nav label[for="tab-cancelados"]{
+  color:#059669; background:#ECFDF5;
+}
+
+/* Contenido de tabs */
+.tab-panel{ display:none; padding:1rem; background:#fff }
+#tab-todos:checked       ~ .tab-panel[data-tab="tab-todos"],
+#tab-pendientes:checked  ~ .tab-panel[data-tab="tab-pendientes"],
+#tab-confirmados:checked ~ .tab-panel[data-tab="tab-confirmados"],
+#tab-completados:checked ~ .tab-panel[data-tab="tab-completados"],
+#tab-cancelados:checked  ~ .tab-panel[data-tab="tab-cancelados"]{
+  display:block;
+}
+
+/* Grid de tarjetas */
+.orders-grid{
+  display:grid; gap:1rem; grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 1024px){ .orders-grid{ grid-template-columns: repeat(2,1fr) } }
+@media (max-width: 620px){ .orders-grid{ grid-template-columns: 1fr } }
+
+/* Tarjeta de pedido */
+.order-card{
+  background:#fff; border:1px solid var(--border); border-radius:16px;
+  padding:1rem; display:flex; flex-direction:column; gap:.75rem;
+  box-shadow: 0 8px 18px -12px rgba(0,0,0,.25);
+}
+.order-head{ display:flex; align-items:center; justify-content:space-between; gap:.75rem }
+.order-seller{ display:flex; align-items:center; gap:.75rem }
+.seller-avatar{ width:48px; height:48px; object-fit:cover; border-radius:9999px }
+.seller-name{ margin:0; font-weight:600 }
+.order-meta{ margin:0; color:#6B7280; font-size:.8rem }
+.order-desc{ margin:.25rem 0 0; color:#4B5563; font-size:.95rem }
+.order-foot{ display:flex; align-items:center; justify-content:space-between; gap:.75rem; flex-wrap:wrap }
+.price-old{ color:#9CA3AF; text-decoration:line-through; margin-right:.25rem }
+.price-new{ color:#059669; font-weight:700 }
+.order-actions{ display:flex; gap:.5rem; flex-wrap:wrap }
+.btn-sm{ padding:.4rem .7rem; font-size:.85rem }
+
+/* Badges de estado */
+.status-badge{
+  display:inline-flex; align-items:center; font-weight:700;
+  font-size:.75rem; padding:.25rem .55rem; border-radius:9999px; color:#111827;
+}
+.status-pending{   background:#FDE68A }
+.status-confirmed{ background:#BFDBFE }
+.status-completed{ background:#A7F3D0 }
+.status-cancelled{ background:#FCA5A5 }
+
+/* Paginación */
+.pagination{
+  margin-top:1rem; display:flex; gap:.5rem; justify-content:center;
+}
+
+/* Avatar en header */
+.avatar{ width:36px; height:36px; border-radius:9999px; object-fit:cover }
+
+/* Pequeños ajustes de layout */
+main{ padding-top:8px }
