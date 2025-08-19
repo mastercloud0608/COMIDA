@@ -5,31 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FoodSaver — Mis pedidos</title>
 
-  <!-- Fuente e iconos (opcional) -->
+  <!-- Fuente e iconos -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- Estilos globales de tu proyecto -->
+  <!-- Estilos globales -->
   <link rel="stylesheet" href="assets/css/styles.css">
-  <!-- Estilos específicos de esta página -->
+  <!-- Estilos de pedidos -->
   <link rel="stylesheet" href="assets/css/components/pedidos.css">
+
+  <!-- Mini estilos del modal (auto-contenido para esta página) -->
+  <style>
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:50}
+    .modal.show{display:flex}
+    .modal-dialog{background:#fff;border-radius:12px;max-width:720px;width:100%;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+    .modal-head{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid #e5e7eb}
+    .modal-body{padding:1rem 1.25rem}
+    .modal-actions{display:flex;gap:.6rem;justify-content:flex-end;padding:0 1.25rem 1.25rem}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    @media (max-width:640px){.grid-2{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
 
-  <!-- Header (usa las clases de styles.css) -->
+  <!-- Header -->
   <header class="header">
     <div class="container header-wrap">
-      <a class="brand" href="index.html">
-        <span class="logo">II</span>
+      <a class="brand" href="index.html" aria-label="FoodSaver inicio">
+        <span class="logo"><i class="fa-solid fa-leaf"></i></span>
         FoodSaver
       </a>
 
       <nav class="nav">
-        <a href="index.html">Inicio</a>
-        <a href="sections/listings.html">Explorar</a>
-        <a href="pedidos.html" class="active">Mis Pedidos</a>
-        <a href="#">Dashboard</a>
-        <a href="#">Perfil</a>
+        <a class="link" href="index.html">Inicio</a>
+        <a class="link active" href="pedidos.html">Mis pedidos</a>
         <a class="btn btn-primary" href="register.html">
           <i class="fa-regular fa-user"></i> Registrarse
         </a>
@@ -40,7 +49,7 @@
           <i class="fa-regular fa-bell"></i>
           <span class="notif-badge">2</span>
         </button>
-        <img class="avatar" alt="María"
+        <img class="avatar" alt="Usuario"
              src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=200&auto=format&fit=crop">
       </div>
     </div>
@@ -60,25 +69,32 @@
         <div class="orders-summary">
           <div class="card card-pad summary-box">
             <p class="summary-label">Total</p>
-            <p class="summary-num">18</p>
+            <p id="sum-total" class="summary-num">0</p>
           </div>
           <div class="card card-pad summary-box">
             <p class="summary-label">Pendientes</p>
-            <p class="summary-num text-amber">2</p>
+            <p id="sum-pend" class="summary-num text-amber">0</p>
           </div>
           <div class="card card-pad summary-box">
             <p class="summary-label">Confirmados</p>
-            <p class="summary-num text-blue">3</p>
+            <p id="sum-conf" class="summary-num text-blue">0</p>
           </div>
           <div class="card card-pad summary-box">
             <p class="summary-label">Completados</p>
-            <p class="summary-num text-emerald">12</p>
+            <p id="sum-comp" class="summary-num text-emerald">0</p>
           </div>
         </div>
       </section>
 
-      <!-- Filtros (solo UI) -->
+      <!-- Filtros + Crear pedido -->
       <section class="card card-pad filters">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:.75rem;flex-wrap:wrap;margin-bottom:.75rem">
+          <div class="help" style="opacity:.8"><i class="fa-solid fa-filter"></i> Filtros</div>
+          <button id="openCreate" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> Crear pedido
+          </button>
+        </div>
+
         <div class="form-grid cols-2">
           <div class="form-group">
             <label class="label" for="q">Buscar</label>
@@ -109,15 +125,15 @@
             <input id="d2" class="input" type="date">
           </div>
           <div class="form-group align-end">
-            <button class="btn btn-primary w-full"><i class="fa-solid fa-filter"></i> Aplicar filtros</button>
+            <button id="applyFilters" class="btn btn-primary w-full"><i class="fa-solid fa-filter"></i> Aplicar filtros</button>
           </div>
         </div>
       </section>
 
-      <!-- Tabs (solo CSS) -->
+      <!-- Tabs -->
       <section class="card orders-tabs">
         <!-- Radios ocultos -->
-        <input checked id="tab-todos"       name="tabs" type="radio" class="tab-radio">
+        <input checked id="tab-todos" name="tabs" type="radio" class="tab-radio">
         <input id="tab-pendientes" name="tabs" type="radio" class="tab-radio">
         <input id="tab-confirmados" name="tabs" type="radio" class="tab-radio">
         <input id="tab-completados" name="tabs" type="radio" class="tab-radio">
@@ -132,194 +148,12 @@
           <label for="tab-cancelados" class="tab-label">Cancelados</label>
         </div>
 
-        <!-- Contenido: TODOS -->
-        <div class="tab-panel" data-tab="tab-todos">
-          <div class="orders-grid">
-            <!-- Card 1 -->
-            <article class="order-card">
-              <div class="order-head">
-                <div class="order-seller">
-                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=200&auto=format&fit=crop" alt="">
-                  <div>
-                    <h3 class="seller-name">Panadería El Buen Sabor</h3>
-                    <p class="order-meta">Pedido #FS-10234 · 12 mar, 18:25</p>
-                  </div>
-                </div>
-                <span class="status-badge status-pending">Pendiente</span>
-              </div>
-
-              <p class="order-desc">Pack de pasteles (3 uds) · Retiro hoy 20:00 · Col. Roma</p>
-
-              <div class="order-foot">
-                <div>
-                  <span class="price-old">$180</span>
-                  <span class="price-new">$126</span>
-                </div>
-                <div class="order-actions">
-                  <a class="btn btn-secondary btn-sm" href="#">Ver detalle</a>
-                  <a class="btn btn-ghost btn-sm" href="#">Cancelar</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- Card 2 -->
-            <article class="order-card">
-              <div class="order-head">
-                <div class="order-seller">
-                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1593504049359-74330189a345?q=80&w=200&auto=format&fit=crop" alt="">
-                  <div>
-                    <h3 class="seller-name">Pizzería La Artesana</h3>
-                    <p class="order-meta">Pedido #FS-10219 · 9 mar, 13:10</p>
-                  </div>
-                </div>
-                <span class="status-badge status-confirmed">Confirmado</span>
-              </div>
-
-              <p class="order-desc">Pizza margarita (1) + bebida · Retiro hoy 21:30 · Centro</p>
-
-              <div class="order-foot">
-                <div>
-                  <span class="price-old">$200</span>
-                  <span class="price-new">$150</span>
-                </div>
-                <div class="order-actions">
-                  <a class="btn btn-secondary btn-sm" href="#">Ver detalle</a>
-                  <a class="btn btn-ghost btn-sm" href="#">Ver QR</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- Card 3 -->
-            <article class="order-card">
-              <div class="order-head">
-                <div class="order-seller">
-                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1600335895229-6e75511892c8?q=80&w=200&auto=format&fit=crop" alt="">
-                  <div>
-                    <h3 class="seller-name">Green Bowl</h3>
-                    <p class="order-meta">Pedido #FS-10188 · 28 feb, 19:40</p>
-                  </div>
-                </div>
-                <span class="status-badge status-completed">Completado</span>
-              </div>
-
-              <p class="order-desc">Ensalada fresca + aderezo · Retirado · Condesa</p>
-
-              <div class="order-foot">
-                <div>
-                  <span class="price-old">$150</span>
-                  <span class="price-new">$90</span>
-                </div>
-                <div class="order-actions">
-                  <a class="btn btn-secondary btn-sm" href="#">Recibo</a>
-                  <a class="btn btn-primary btn-sm" href="#">Volver a pedir</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <!-- Contenido: PENDIENTES -->
-        <div class="tab-panel" data-tab="tab-pendientes">
-          <div class="orders-grid">
-            <article class="order-card">
-              <div class="order-head">
-                <div class="order-seller">
-                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1576194555759-22b1e99820f1?q=80&w=200&auto=format&fit=crop" alt="">
-                  <div>
-                    <h3 class="seller-name">Sandwich Club</h3>
-                    <p class="order-meta">Pedido #FS-10241 · 13 mar, 12:05</p>
-                  </div>
-                </div>
-                <span class="status-badge status-pending">Pendiente</span>
-              </div>
-              <p class="order-desc">Pack de sándwiches variados · Retiro 19:30 · Norte</p>
-              <div class="order-foot">
-                <div><span class="price-old">$120</span><span class="price-new">$60</span></div>
-                <div class="order-actions">
-                  <a class="btn btn-secondary btn-sm" href="#">Ver detalle</a>
-                  <a class="btn btn-ghost btn-sm" href="#">Cancelar</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <!-- Contenido: CONFIRMADOS -->
-        <div class="tab-panel" data-tab="tab-confirmados">
-          <div class="orders-grid">
-            <article class="order-card">
-              <div class="order-head">
-                <div class="order-seller">
-                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1593504049359-74330189a345?q=80&w=200&auto=format&fit=crop" alt="">
-                  <div>
-                    <h3 class="seller-name">Pizzería La Artesana</h3>
-                    <p class="order-meta">Pedido #FS-10219 · 9 mar, 13:10</p>
-                  </div>
-                </div>
-                <span class="status-badge status-confirmed">Confirmado</span>
-              </div>
-              <p class="order-desc">Pizza margarita (1) + bebida · Retiro 21:30 · Centro</p>
-              <div class="order-foot">
-                <div><span class="price-old">$200</span><span class="price-new">$150</span></div>
-                <div class="order-actions">
-                  <a class="btn btn-secondary btn-sm" href="#">Ver detalle</a>
-                  <a class="btn btn-ghost btn-sm" href="#">Ver QR</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <!-- Contenido: COMPLETADOS -->
-        <div class="tab-panel" data-tab="tab-completados">
-          <div class="orders-grid">
-            <article class="order-card">
-              <div class="order-head">
-                <div class="order-seller">
-                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1600335895229-6e75511892c8?q=80&w=200&auto=format&fit=crop" alt="">
-                  <div>
-                    <h3 class="seller-name">Green Bowl</h3>
-                    <p class="order-meta">Pedido #FS-10188 · 28 feb, 19:40</p>
-                  </div>
-                </div>
-                <span class="status-badge status-completed">Completado</span>
-              </div>
-              <p class="order-desc">Ensalada fresca + aderezo · Retirado · Condesa</p>
-              <div class="order-foot">
-                <div><span class="price-old">$150</span><span class="price-new">$90</span></div>
-                <div class="order-actions">
-                  <a class="btn btn-secondary btn-sm" href="#">Recibo</a>
-                  <a class="btn btn-primary btn-sm" href="#">Valorar</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <!-- Contenido: CANCELADOS -->
-        <div class="tab-panel" data-tab="tab-cancelados">
-          <div class="orders-grid">
-            <article class="order-card">
-              <div class="order-head">
-                <div class="order-seller">
-                  <img class="seller-avatar" src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=200&auto=format&fit=crop" alt="">
-                  <div>
-                    <h3 class="seller-name">Café Central</h3>
-                    <p class="order-meta">Pedido #FS-10120 · 11 feb, 09:05</p>
-                  </div>
-                </div>
-                <span class="status-badge status-cancelled">Cancelado</span>
-              </div>
-              <p class="order-desc">Pack desayuno · Cancelado por el usuario</p>
-              <div class="order-foot">
-                <div><span class="price-new">$0</span></div>
-                <div class="order-actions">
-                  <a class="btn btn-primary btn-sm" href="#">Volver a pedir</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
+        <!-- Panels (se llenan por JS) -->
+        <div id="panel-todos" class="tab-panel" data-tab="tab-todos"></div>
+        <div id="panel-pend"  class="tab-panel" data-tab="tab-pendientes"></div>
+        <div id="panel-conf"  class="tab-panel" data-tab="tab-confirmados"></div>
+        <div id="panel-comp"  class="tab-panel" data-tab="tab-completados"></div>
+        <div id="panel-canc"  class="tab-panel" data-tab="tab-cancelados"></div>
       </section>
 
       <!-- Paginación (decorativa) -->
@@ -338,5 +172,391 @@
   <footer class="footer-mini">
     <div class="container">&copy; 2025 FoodSaver. Todos los derechos reservados.</div>
   </footer>
+
+  <!-- MODAL: Crear pedido -->
+  <div id="createOrderModal" class="modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-head">
+        <h3 style="margin:0;font-size:1.15rem">Crear pedido</h3>
+        <button id="closeCreate" class="btn btn-ghost" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="createOrderForm" class="modal-body">
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="label" for="sellerName">Vendedor</label>
+            <input class="input" id="sellerName" name="sellerName" type="text" placeholder="Panadería El Buen Sabor" required>
+          </div>
+          <div class="form-group">
+            <label class="label" for="productTitle">Producto</label>
+            <input class="input" id="productTitle" name="productTitle" type="text" placeholder="Pack de pasteles (3 uds)" required>
+          </div>
+
+          <div class="form-group">
+            <label class="label" for="price">Precio</label>
+            <input class="input" id="price" name="price" type="number" min="0" placeholder="126" required>
+          </div>
+          <div class="form-group">
+            <label class="label" for="oldPrice">Precio original</label>
+            <input class="input" id="oldPrice" name="oldPrice" type="number" min="0" placeholder="180">
+          </div>
+
+          <div class="form-group">
+            <label class="label" for="pickup">Retiro</label>
+            <input class="input" id="pickup" name="pickup" type="text" placeholder="Hoy 20:00">
+          </div>
+          <div class="form-group">
+            <label class="label" for="area">Zona</label>
+            <input class="input" id="area" name="area" type="text" placeholder="Col. Roma">
+          </div>
+
+          <div class="form-group">
+            <label class="label" for="sellerAvatar">Avatar vendedor (URL)</label>
+            <input class="input" id="sellerAvatar" name="sellerAvatar" type="url" placeholder="https://...">
+          </div>
+          <div class="form-group">
+            <label class="label" for="img">Imagen producto (URL)</label>
+            <input class="input" id="img" name="img" type="url" placeholder="https://...">
+          </div>
+
+          <div class="form-group">
+            <label class="label" for="status">Estado</label>
+            <select id="status" name="status" class="select">
+              <option>Pendiente</option>
+              <option>Confirmado</option>
+              <option>Completado</option>
+              <option>Cancelado</option>
+            </select>
+          </div>
+        </div>
+      </form>
+      <div class="modal-actions">
+        <button id="cancelCreate" class="btn btn-ghost">Cancelar</button>
+        <button form="createOrderForm" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script: gestión de pedidos (localStorage) -->
+  <script>
+    const LS_KEY = 'fs_orders';
+    const $ = sel => document.querySelector(sel);
+
+    // Utilidades
+    const money = n => '$' + (Number(n||0)).toLocaleString('es-MX', {maximumFractionDigits:0});
+    const fmtDateShort = (d) => d.toLocaleDateString('es-MX', {day:'2-digit', month:'short'}).replace('.', '');
+    const pad = n => n.toString().padStart(2,'0');
+    const genId = () => {
+      const d = new Date();
+      return `FS-${d.getFullYear().toString().slice(2)}${pad(d.getMonth()+1)}${pad(d.getDate())}-${d.getHours()}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+    };
+
+    function getOrders() {
+      try { return JSON.parse(localStorage.getItem(LS_KEY) || '[]'); }
+      catch { return []; }
+    }
+    function saveOrders(arr) { localStorage.setItem(LS_KEY, JSON.stringify(arr)); }
+
+    function seedIfEmpty() {
+      let orders = getOrders();
+      if (orders.length) return;
+      orders = [
+        {
+          id:'FS-10234', status:'Pendiente',
+          sellerName:'Panadería El Buen Sabor',
+          sellerAvatar:'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=200&auto=format&fit=crop',
+          productTitle:'Pack de pasteles (3 uds)',
+          img:'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=200&auto=format&fit=crop',
+          pickup:'Hoy 20:00', area:'Col. Roma',
+          oldPrice:180, price:126,
+          createdAt: new Date().toISOString(),
+          metaDate: '12 mar, 18:25'
+        },
+        {
+          id:'FS-10219', status:'Confirmado',
+          sellerName:'Pizzería La Artesana',
+          sellerAvatar:'https://images.unsplash.com/photo-1593504049359-74330189a345?q=80&w=200&auto=format&fit=crop',
+          productTitle:'Pizza margarita (1) + bebida',
+          img:'https://images.unsplash.com/photo-1593504049359-74330189a345?q=80&w=200&auto=format&fit=crop',
+          pickup:'Hoy 21:30', area:'Centro',
+          oldPrice:200, price:150,
+          createdAt: new Date(Date.now()-864e5*3).toISOString(),
+          metaDate: '9 mar, 13:10'
+        },
+        {
+          id:'FS-10188', status:'Completado',
+          sellerName:'Green Bowl',
+          sellerAvatar:'https://images.unsplash.com/photo-1600335895229-6e75511892c8?q=80&w=200&auto=format&fit=crop',
+          productTitle:'Ensalada fresca + aderezo',
+          img:'https://images.unsplash.com/photo-1600335895229-6e75511892c8?q=80&w=200&auto=format&fit=crop',
+          pickup:'Retirado', area:'Condesa',
+          oldPrice:150, price:90,
+          createdAt: new Date(Date.now()-864e5*10).toISOString(),
+          metaDate: '28 feb, 19:40'
+        }
+      ];
+      saveOrders(orders);
+    }
+
+    // Crear pedido (público)
+    function createOrder(data) {
+      const now = new Date();
+      const order = {
+        id: data.id || genId(),
+        status: data.status || 'Pendiente',
+        sellerName: data.sellerName,
+        sellerAvatar: data.sellerAvatar || '',
+        productTitle: data.productTitle,
+        img: data.img || '',
+        pickup: data.pickup || 'Hoy',
+        area: data.area || '',
+        oldPrice: Number(data.oldPrice||0),
+        price: Number(data.price||0),
+        createdAt: now.toISOString(),
+        metaDate: `${fmtDateShort(now)}, ${pad(now.getHours())}:${pad(now.getMinutes())}`
+      };
+      const orders = getOrders();
+      orders.unshift(order);
+      saveOrders(orders);
+      return order.id;
+    }
+
+    // Tarjeta de pedido
+    function orderCard(o) {
+      const statusClass = {
+        'Pendiente':'status-pending',
+        'Confirmado':'status-confirmed',
+        'Completado':'status-completed',
+        'Cancelado':'status-cancelled'
+      }[o.status] || 'status-pending';
+
+      let actions = `<button class="btn btn-secondary btn-sm act-detail" data-id="${o.id}">Ver detalle</button>`;
+      if (o.status === 'Pendiente') {
+        actions += ` <button class="btn btn-ghost btn-sm act-cancel" data-id="${o.id}">Cancelar</button>
+                     <button class="btn btn-primary btn-sm act-confirm" data-id="${o.id}">Confirmar</button>`;
+      } else if (o.status === 'Confirmado') {
+        actions += ` <button class="btn btn-ghost btn-sm act-qr" data-id="${o.id}">Ver QR</button>
+                     <button class="btn btn-primary btn-sm act-complete" data-id="${o.id}">Marcar completado</button>`;
+      } else if (o.status === 'Completado') {
+        actions += ` <button class="btn btn-secondary btn-sm act-receipt" data-id="${o.id}">Recibo</button>
+                     <button class="btn btn-primary btn-sm act-reorder" data-id="${o.id}">Volver a pedir</button>`;
+      } else if (o.status === 'Cancelado') {
+        actions += ` <button class="btn btn-primary btn-sm act-reorder" data-id="${o.id}">Volver a pedir</button>`;
+      }
+
+      return `
+      <article class="order-card" data-id="${o.id}">
+        <div class="order-head">
+          <div class="order-seller">
+            <img class="seller-avatar" src="${o.sellerAvatar || o.img}" alt="">
+            <div>
+              <h3 class="seller-name">${o.sellerName}</h3>
+              <p class="order-meta">Pedido #${o.id} · ${o.metaDate}</p>
+            </div>
+          </div>
+          <span class="status-badge ${statusClass}">${o.status}</span>
+        </div>
+
+        <p class="order-desc">${o.productTitle} · ${o.pickup}${o.area ? ' · ' + o.area : ''}</p>
+
+        <div class="order-foot">
+          <div>
+            ${o.oldPrice ? `<span class="price-old">${money(o.oldPrice)}</span>`:''}
+            <span class="price-new">${money(o.price)}</span>
+          </div>
+          <div class="order-actions">${actions}</div>
+        </div>
+      </article>`;
+    }
+
+    function renderLists(allOrders, filters={}) {
+      const q = (filters.q || '').trim().toLowerCase();
+      const estado = (filters.estado || '').trim();
+      const d1 = filters.d1 ? new Date(filters.d1) : null;
+      const d2 = filters.d2 ? new Date(filters.d2) : null;
+
+      const match = (o) => {
+        if (q) {
+          const hay = [o.id, o.sellerName, o.productTitle, o.area].join(' ').toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        if (estado && o.status !== estado) return false;
+        if (d1 || d2) {
+          const t = new Date(o.createdAt);
+          if (d1 && t < d1) return false;
+          if (d2 && t > new Date(d2.getFullYear(), d2.getMonth(), d2.getDate(), 23,59,59)) return false;
+        }
+        return true;
+      };
+
+      const filtered = allOrders.filter(match);
+
+      // Resumen
+      $('#sum-total').textContent = filtered.length;
+      $('#sum-pend').textContent  = filtered.filter(o=>o.status==='Pendiente').length;
+      $('#sum-conf').textContent  = filtered.filter(o=>o.status==='Confirmado').length;
+      $('#sum-comp').textContent  = filtered.filter(o=>o.status==='Completado').length;
+
+      const pend = filtered.filter(o=>o.status==='Pendiente');
+      const conf = filtered.filter(o=>o.status==='Confirmado');
+      const comp = filtered.filter(o=>o.status==='Completado');
+      const canc = filtered.filter(o=>o.status==='Cancelado');
+
+      const paint = (panelSel, arr) => {
+        const panel = $(panelSel);
+        if (!arr.length) {
+          panel.innerHTML = `
+            <div class="empty">
+              <div class="empty-ico"><i class="fa-regular fa-bag-shopping"></i></div>
+              <h3>No hay pedidos</h3>
+              <p class="help">Cuando hagas una reserva, aparecerá aquí.</p>
+              <div class="btn-row">
+                <a class="btn btn-primary" href="index.html"><i class="fa-solid fa-magnifying-glass"></i> Buscar ofertas</a>
+                <button class="btn btn-ghost" id="makeDemo">Crear pedido demo</button>
+              </div>
+            </div>`;
+        } else {
+          panel.innerHTML = `<div class="orders-grid">${arr.map(orderCard).join('')}</div>`;
+        }
+      };
+
+      paint('#panel-todos', filtered);
+      paint('#panel-pend', pend);
+      paint('#panel-conf', conf);
+      paint('#panel-comp', comp);
+      paint('#panel-canc', canc);
+    }
+
+    function currentFilters() {
+      return {
+        q: $('#q').value,
+        estado: $('#estado').value,
+        d1: $('#d1').value,
+        d2: $('#d2').value
+      };
+    }
+
+    // Delegación de acciones en tarjetas + demo vacío
+    function bindActions() {
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('button, a');
+        if (!btn) return;
+
+        const orders = getOrders();
+
+        if (btn.id === 'makeDemo') {
+          createOrder({
+            sellerName:'Sandwich Club',
+            sellerAvatar:'https://images.unsplash.com/photo-1576194555759-22b1e99820f1?q=80&w=200&auto=format&fit=crop',
+            productTitle:'Pack de sándwiches variados',
+            pickup:'Hoy 19:30', area:'Norte',
+            oldPrice:120, price:60
+          });
+          renderLists(getOrders(), currentFilters());
+          return;
+        }
+
+        const id = btn.dataset.id;
+        if (!id) return;
+
+        const idx = orders.findIndex(o => o.id == id);
+        if (idx === -1) return;
+
+        if (btn.classList.contains('act-cancel')) {
+          orders[idx].status = 'Cancelado';
+          saveOrders(orders);
+          renderLists(getOrders(), currentFilters());
+        }
+        else if (btn.classList.contains('act-confirm')) {
+          orders[idx].status = 'Confirmado';
+          saveOrders(orders);
+          renderLists(getOrders(), currentFilters());
+        }
+        else if (btn.classList.contains('act-complete')) {
+          orders[idx].status = 'Completado';
+          saveOrders(orders);
+          renderLists(getOrders(), currentFilters());
+        }
+        else if (btn.classList.contains('act-reorder')) {
+          createOrder({
+            sellerName: orders[idx].sellerName,
+            sellerAvatar: orders[idx].sellerAvatar,
+            productTitle: orders[idx].productTitle,
+            pickup: 'Hoy',
+            area: orders[idx].area,
+            oldPrice: orders[idx].oldPrice,
+            price: orders[idx].price,
+            img: orders[idx].img
+          });
+          renderLists(getOrders(), currentFilters());
+        }
+        else if (btn.classList.contains('act-qr')) {
+          alert('QR de pedido #' + id + ' (demo)');
+        }
+        else if (btn.classList.contains('act-receipt')) {
+          alert('Recibo de pedido #' + id + ' (demo)');
+        }
+        else if (btn.classList.contains('act-detail')) {
+          alert('Detalle de pedido #' + id + ' (demo)');
+        }
+      });
+    }
+
+    // --- Crear pedido (modal) ---
+    const createModal = $('#createOrderModal');
+    const openCreate  = $('#openCreate');
+    const closeCreate = $('#closeCreate');
+    const cancelCreate= $('#cancelCreate');
+    const formCreate  = $('#createOrderForm');
+
+    function openCreateModal(){ createModal.classList.add('show'); }
+    function closeCreateModal(){ createModal.classList.remove('show'); }
+
+    openCreate.addEventListener('click', openCreateModal);
+    closeCreate.addEventListener('click', closeCreateModal);
+    cancelCreate.addEventListener('click', (e)=>{ e.preventDefault(); closeCreateModal(); });
+    createModal.addEventListener('click', (e)=>{ if(e.target===createModal) closeCreateModal(); });
+
+    formCreate.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fd = new FormData(formCreate);
+      const data = Object.fromEntries(fd.entries());
+      data.price = Number(data.price||0);
+      data.oldPrice = Number(data.oldPrice||0);
+      if(!data.sellerName || !data.productTitle) return;
+      createOrder(data);
+      formCreate.reset();
+      closeCreateModal();
+      document.getElementById('tab-todos').checked = true;
+      renderLists(getOrders(), currentFilters());
+    });
+
+    // Toast si venimos de una reserva (?new=1)
+    function toastIfNew() {
+      const params = new URLSearchParams(location.search);
+      if (!params.get('new')) return;
+      const t = document.createElement('div');
+      t.className = 'toast';
+      t.textContent = '✅ Pedido creado';
+      document.body.appendChild(t);
+      setTimeout(()=> t.classList.add('show'), 50);
+      setTimeout(()=> t.classList.remove('show'), 2400);
+      setTimeout(()=> t.remove(), 3000);
+      history.replaceState({}, '', location.pathname);
+    }
+
+    // Init
+    seedIfEmpty();
+    bindActions();
+    renderLists(getOrders(), currentFilters());
+    toastIfNew();
+
+    // Filtros
+    $('#applyFilters').addEventListener('click', (e)=>{
+      e.preventDefault();
+      renderLists(getOrders(), currentFilters());
+    });
+    $('#q').addEventListener('input', ()=> renderLists(getOrders(), currentFilters()));
+    $('#estado').addEventListener('change', ()=> renderLists(getOrders(), currentFilters()));
+  </script>
 </body>
 </html>

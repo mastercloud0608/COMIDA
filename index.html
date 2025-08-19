@@ -10,112 +10,28 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://unpkg.com/@popperjs/core@2"></script>
   <style id="app-style">
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f8f9fa;
-    }
-    
-    .nav-active {
-      color: #10B981;
-      font-weight: 600;
-      border-bottom: 3px solid #10B981;
-    }
-    
-    .food-card {
-      transition: all 0.3s ease;
-    }
-    
-    .food-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    }
-    
-    .loader {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #10B981;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    .kanban-column {
-      min-height: 300px;
-      background-color: #f1f5f9;
-      border-radius: 0.5rem;
-    }
-    
-    .chat-panel {
-      position: fixed;
-      right: -400px;
-      top: 0;
-      height: 100vh;
-      width: 400px;
-      transition: right 0.3s ease;
-      z-index: 1000;
-    }
-    
-    .chat-panel.open {
-      right: 0;
-    }
-    
-    .badge-status-pending {
-      background-color: #FCD34D;
-    }
-    
-    .badge-status-confirmed {
-      background-color: #60A5FA;
-    }
-    
-    .badge-status-completed {
-      background-color: #34D399;
-    }
-    
-    .badge-status-cancelled {
-      background-color: #F87171;
-    }
-    
-    /* Custom animation */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    .fade-in {
-      animation: fadeIn 0.5s ease-in;
-    }
-    
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: #10B981;
-      border-radius: 4px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background: #047857;
-    }
-    
-    .icon-bounce:hover {
-      animation: bounce 0.5s;
-    }
-    
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
+    body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
+    .nav-active { color: #10B981; font-weight: 600; border-bottom: 3px solid #10B981; }
+    .food-card { transition: all 0.3s ease; }
+    .food-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05); }
+    .loader { border: 4px solid #f3f3f3; border-top: 4px solid #10B981; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; }
+    @keyframes spin { 0% {transform: rotate(0deg);} 100% {transform: rotate(360deg);} }
+    .kanban-column { min-height: 300px; background-color: #f1f5f9; border-radius: .5rem; }
+    .chat-panel { position: fixed; right: -400px; top: 0; height: 100vh; width: 400px; transition: right .3s ease; z-index: 1000; }
+    .chat-panel.open { right: 0; }
+    .badge-status-pending { background-color: #FCD34D; }
+    .badge-status-confirmed { background-color: #60A5FA; }
+    .badge-status-completed { background-color: #34D399; }
+    .badge-status-cancelled { background-color: #F87171; }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    .fade-in { animation: fadeIn .5s ease-in; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #10B981; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #047857; }
+    .icon-bounce:hover { animation: bounce .5s; }
+    @keyframes bounce { 0%,100% {transform: translateY(0);} 50% {transform: translateY(-5px);} }
+    .btn-qty{ width:2.25rem; height:2.25rem; }
   </style>
 </head>
 <body class="bg-gradient-to-br from-green-50 to-blue-50">
@@ -129,49 +45,45 @@
           </svg>
           <span class="text-xl font-bold text-green-600">FoodSaver</span>
         </div>
-        
-        <nav class="hidden md:flex space-x-8">
-          <a href="javascript:void(0)" class="nav-active py-2 text-sm">Inicio</a>
-          <a href="javascript:void(0)" class="text-gray-600 hover:text-green-500 py-2 text-sm">Explorar</a>
-          <a class="btn btn-primary" href="register.html">
-  <i class="fa-regular fa-user"></i> Registrarse
-<a class="btn btn-primary" href="pedidos.html">
-  <i class="fa-solid fa-clipboard-list"></i> Mis Pedidos
-</a>
 
-</a>
+        <nav class="hidden md:flex space-x-8">
+          <a href="#" class="nav-active py-2 text-sm">Inicio</a>
+          <a href="register.html" class="text-gray-600 hover:text-green-500 py-2 text-sm flex items-center gap-2">
+            <i class="fa-regular fa-user"></i> Registrarse
+          </a>
+          <a href="pedidos.html" class="text-gray-600 hover:text-green-500 py-2 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-clipboard-list"></i> Mis Pedidos
+          </a>
         </nav>
-        
+
         <div class="flex items-center space-x-4">
-          <button id="notificationBtn" class="text-gray-500 hover:text-green-500">
+          <button id="notificationBtn" class="text-gray-500 hover:text-green-500 relative">
             <i class="fa-regular fa-bell text-lg"></i>
-            <span class="absolute top-3 right-14 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">2</span>
+            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">2</span>
           </button>
-          
+
           <div class="relative">
-  
-            
+            <button id="userMenuBtn" class="text-gray-500 hover:text-green-500">
+              <i class="fa-regular fa-user text-lg"></i>
+            </button>
             <div id="userMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden">
-              <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50">Mi Perfil</a>
-              <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50">Configuración</a>
-              <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Cerrar Sesión</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50">Mi Perfil</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50">Configuración</a>
+              <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Cerrar Sesión</a>
             </div>
           </div>
-          
+
           <button id="mobileMenuBtn" class="md:hidden text-gray-600">
             <i class="fa-solid fa-bars text-xl"></i>
           </button>
         </div>
       </div>
-      
+
       <!-- Mobile Menu -->
       <div id="mobileMenu" class="md:hidden hidden pb-4">
         <nav class="flex flex-col space-y-3">
-          <a href="javascript:void(0)" class="text-green-500 font-semibold">Inicio</a>
-          <a href="javascript:void(0)" class="text-gray-600">Explorar</a>
-          <a href="javascript:void(0)" class="text-gray-600">Mis Pedidos</a>
-          <a href="javascript:void(0)" class="text-gray-600">Dashboard</a>
-          <a href="javascript:void(0)" class="text-gray-600">Perfil</a>
+          <a href="#" class="text-green-500 font-semibold">Inicio</a>
+          <a href="pedidos.html" class="text-gray-600">Mis Pedidos</a>
         </nav>
       </div>
     </div>
@@ -195,7 +107,7 @@
           </div>
         </div>
         <div class="md:w-1/2 flex justify-center">
-          <img src="https://images.unsplash.com/photo-1458303210916-a83c4b8538e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwzfHxDb21pZGElMjBkZWxpY2lvc2F8ZW58MHx8fHwxNzU1MTQ1NzI5fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Comida deliciosa" class="rounded-lg w-full max-w-sm shadow-lg">
+          <img src="https://images.unsplash.com/photo-1458303210916-a83c4b8538e1?auto=format&fit=crop&w=1080&q=80" alt="Comida deliciosa" class="rounded-lg w-full max-w-sm shadow-lg">
         </div>
       </div>
     </section>
@@ -206,49 +118,28 @@
         <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-gray-600 font-semibold">Comida rescatada</h3>
-            <span class="p-2 rounded-full bg-green-100 text-green-600">
-              <i class="fas fa-utensils"></i>
-            </span>
+            <span class="p-2 rounded-full bg-green-100 text-green-600"><i class="fas fa-utensils"></i></span>
           </div>
-          <div class="flex items-end">
-            <span class="text-3xl font-bold text-gray-800">247 kg</span>
-            <span class="ml-2 text-sm text-green-500">+12.5% <i class="fas fa-arrow-up"></i></span>
-          </div>
-          <div class="w-full h-2 bg-gray-200 rounded-full mt-3 overflow-hidden">
-            <div class="h-full bg-green-500 rounded-full" style="width: 75%"></div>
-          </div>
+          <div class="flex items-end"><span class="text-3xl font-bold text-gray-800">247 kg</span><span class="ml-2 text-sm text-green-500">+12.5% <i class="fas fa-arrow-up"></i></span></div>
+          <div class="w-full h-2 bg-gray-200 rounded-full mt-3 overflow-hidden"><div class="h-full bg-green-500 rounded-full" style="width:75%"></div></div>
         </div>
-        
+
         <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-gray-600 font-semibold">Ahorro económico</h3>
-            <span class="p-2 rounded-full bg-blue-100 text-blue-600">
-              <i class="fas fa-dollar-sign"></i>
-            </span>
+            <span class="p-2 rounded-full bg-blue-100 text-blue-600"><i class="fas fa-dollar-sign"></i></span>
           </div>
-          <div class="flex items-end">
-            <span class="text-3xl font-bold text-gray-800">$3,580</span>
-            <span class="ml-2 text-sm text-green-500">+8.3% <i class="fas fa-arrow-up"></i></span>
-          </div>
-          <div class="w-full h-2 bg-gray-200 rounded-full mt-3 overflow-hidden">
-            <div class="h-full bg-blue-500 rounded-full" style="width: 65%"></div>
-          </div>
+          <div class="flex items-end"><span class="text-3xl font-bold text-gray-800">$3,580</span><span class="ml-2 text-sm text-green-500">+8.3% <i class="fas fa-arrow-up"></i></span></div>
+          <div class="w-full h-2 bg-gray-200 rounded-full mt-3 overflow-hidden"><div class="h-full bg-blue-500 rounded-full" style="width:65%"></div></div>
         </div>
-        
+
         <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-gray-600 font-semibold">Usuarios activos</h3>
-            <span class="p-2 rounded-full bg-purple-100 text-purple-600">
-              <i class="fas fa-users"></i>
-            </span>
+            <span class="p-2 rounded-full bg-purple-100 text-purple-600"><i class="fas fa-users"></i></span>
           </div>
-          <div class="flex items-end">
-            <span class="text-3xl font-bold text-gray-800">1,243</span>
-            <span class="ml-2 text-sm text-green-500">+21.7% <i class="fas fa-arrow-up"></i></span>
-          </div>
-          <div class="w-full h-2 bg-gray-200 rounded-full mt-3 overflow-hidden">
-            <div class="h-full bg-purple-500 rounded-full" style="width: 85%"></div>
-          </div>
+          <div class="flex items-end"><span class="text-3xl font-bold text-gray-800">1,243</span><span class="ml-2 text-sm text-green-500">+21.7% <i class="fas fa-arrow-up"></i></span></div>
+          <div class="w-full h-2 bg-gray-200 rounded-full mt-3 overflow-hidden"><div class="h-full bg-purple-500 rounded-full" style="width:85%"></div></div>
         </div>
       </div>
     </section>
@@ -260,7 +151,7 @@
           <h2 class="text-2xl font-bold text-gray-800">Ofertas disponibles</h2>
           <p class="text-gray-600">Encuentra comida de calidad a precios increíbles</p>
         </div>
-        
+
         <div class="mt-4 md:mt-0 flex flex-wrap gap-2">
           <div class="relative">
             <select class="bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm">
@@ -270,11 +161,9 @@
               <option>Supermercados</option>
               <option>Cafeterías</option>
             </select>
-            <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-              <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
-            </div>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"><i class="fas fa-chevron-down text-gray-400 text-xs"></i></div>
           </div>
-          
+
           <div class="relative">
             <select class="bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-green-500 text-sm">
               <option>Más recientes</option>
@@ -282,22 +171,20 @@
               <option>Precio: Mayor a menor</option>
               <option>Mayor descuento</option>
             </select>
-            <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-              <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
-            </div>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"><i class="fas fa-chevron-down text-gray-400 text-xs"></i></div>
           </div>
-          
+
           <button class="bg-green-100 text-green-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-green-200">
             <i class="fas fa-filter mr-1"></i> Filtros
           </button>
         </div>
       </div>
-      
+
       <!-- Listings Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <!-- Listing Card 1 -->
+        <!-- Card 1 -->
         <div class="food-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="https://images.unsplash.com/photo-1576194555759-22b1e99820f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHw2fHxTJUMzJUExbmR3aWNoJTIwZGUlMjBwb2xsb3xlbnwwfHx8fDE3NTUxNDU3MzV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Sándwich de pollo" class="w-full h-48 object-cover">
+          <img src="https://images.unsplash.com/photo-1576194555759-22b1e99820f1?auto=format&fit=crop&w=1080&q=80" alt="Sándwich de pollo" class="w-full h-48 object-cover">
           <div class="p-4">
             <div class="flex items-center mb-2">
               <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">50% descuento</span>
@@ -311,21 +198,33 @@
               <span class="text-xs text-gray-500 ml-1">(32 reseñas)</span>
             </div>
             <div class="flex items-center justify-between">
-              <div>
-                <span class="text-gray-400 text-xs line-through">$120</span>
-                <span class="text-green-600 font-semibold ml-1">$60</span>
-              </div>
+              <div><span class="text-gray-400 text-xs line-through">$120</span><span class="text-green-600 font-semibold ml-1">$60</span></div>
               <span class="text-sm text-gray-600">Quedan: 4</span>
             </div>
-            <button class="mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition">
-              Ver detalle
-            </button>
+            <button
+              class="js-view-detail mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition"
+              data-title="Pack de sándwiches variados"
+              data-image="https://images.unsplash.com/photo-1576194555759-22b1e99820f1?auto=format&fit=crop&w=1080&q=80"
+              data-old="120"
+              data-price="60"
+              data-discount="50% descuento"
+              data-time="Hace 2 horas"
+              data-rating="4.8"
+              data-reviews="32"
+              data-desc="Deliciosos sándwiches recién hechos. Perfectos para llevar, incluye vegetarianos."
+              data-seller="Sandwich Club"
+              data-seller-avatar="https://images.unsplash.com/photo-1576194555759-22b1e99820f1?auto=format&fit=crop&w=200&q=80"
+              data-pickup="Hoy, 19:30"
+              data-area="Norte"
+              data-contains="Gluten, lácteos"
+              data-category="Cafetería"
+            >Ver detalle</button>
           </div>
         </div>
-        
-        <!-- Listing Card 2 -->
+
+        <!-- Card 2 -->
         <div class="food-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwxfHxQYXN0ZWxlc3xlbnwwfHx8fDE3NTUxNDU3NDN8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pasteles" class="w-full h-48 object-cover">
+          <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1080&q=80" alt="Pasteles" class="w-full h-48 object-cover">
           <div class="p-4">
             <div class="flex items-center mb-2">
               <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">30% descuento</span>
@@ -339,21 +238,33 @@
               <span class="text-xs text-gray-500 ml-1">(19 reseñas)</span>
             </div>
             <div class="flex items-center justify-between">
-              <div>
-                <span class="text-gray-400 text-xs line-through">$180</span>
-                <span class="text-green-600 font-semibold ml-1">$126</span>
-              </div>
+              <div><span class="text-gray-400 text-xs line-through">$180</span><span class="text-green-600 font-semibold ml-1">$126</span></div>
               <span class="text-sm text-gray-600">Quedan: 6</span>
             </div>
-            <button class="mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition">
-              Ver detalle
-            </button>
+            <button
+              class="js-view-detail mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition"
+              data-title="Pasteles variados"
+              data-image="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1080&q=80"
+              data-old="180"
+              data-price="126"
+              data-discount="30% descuento"
+              data-time="Hace 5 horas"
+              data-rating="4.6"
+              data-reviews="19"
+              data-desc="Deliciosos pasteles del día. Incluye chocolate, zanahoria y red velvet."
+              data-seller="Panadería El Buen Sabor"
+              data-seller-avatar="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=200&q=80"
+              data-pickup="Hoy, 20:00"
+              data-area="Col. Roma"
+              data-contains="Gluten, lácteos, huevo"
+              data-category="Panadería"
+            >Ver detalle</button>
           </div>
         </div>
-        
-        <!-- Listing Card 3 -->
+
+        <!-- Card 3 -->
         <div class="food-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="https://images.unsplash.com/photo-1600335895229-6e75511892c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwxfHxFbnNhbGFkYXN8ZW58MHx8fHwxNzU1MTQ1NzUxfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Ensaladas" class="w-full h-48 object-cover">
+          <img src="https://images.unsplash.com/photo-1600335895229-6e75511892c8?auto=format&fit=crop&w=1080&q=80" alt="Ensaladas" class="w-full h-48 object-cover">
           <div class="p-4">
             <div class="flex items-center mb-2">
               <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">40% descuento</span>
@@ -367,21 +278,33 @@
               <span class="text-xs text-gray-500 ml-1">(27 reseñas)</span>
             </div>
             <div class="flex items-center justify-between">
-              <div>
-                <span class="text-gray-400 text-xs line-through">$150</span>
-                <span class="text-green-600 font-semibold ml-1">$90</span>
-              </div>
+              <div><span class="text-gray-400 text-xs line-through">$150</span><span class="text-green-600 font-semibold ml-1">$90</span></div>
               <span class="text-sm text-gray-600">Quedan: 3</span>
             </div>
-            <button class="mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition">
-              Ver detalle
-            </button>
+            <button
+              class="js-view-detail mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition"
+              data-title="Ensaladas frescas"
+              data-image="https://images.unsplash.com/photo-1600335895229-6e75511892c8?auto=format&fit=crop&w=1080&q=80"
+              data-old="150"
+              data-price="90"
+              data-discount="40% descuento"
+              data-time="Hace 30 min"
+              data-rating="4.9"
+              data-reviews="27"
+              data-desc="Ensaladas preparadas con productos frescos del día. Opciones veganas disponibles."
+              data-seller="Green Bowl"
+              data-seller-avatar="https://images.unsplash.com/photo-1600335895229-6e75511892c8?auto=format&fit=crop&w=200&q=80"
+              data-pickup="Hoy, 18:30"
+              data-area="Condesa"
+              data-contains="Puede contener trazas de frutos secos"
+              data-category="Vegano"
+            >Ver detalle</button>
           </div>
         </div>
-        
-        <!-- Listing Card 4 -->
+
+        <!-- Card 4 -->
         <div class="food-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwzfHxQaXp6YXxlbnwwfHx8fDE3NTUxNDU3NTh8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pizza" class="w-full h-48 object-cover">
+          <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=1080&q=80" alt="Pizza" class="w-full h-48 object-cover">
           <div class="p-4">
             <div class="flex items-center mb-2">
               <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">25% descuento</span>
@@ -395,18 +318,30 @@
               <span class="text-xs text-gray-500 ml-1">(42 reseñas)</span>
             </div>
             <div class="flex items-center justify-between">
-              <div>
-                <span class="text-gray-400 text-xs line-through">$200</span>
-                <span class="text-green-600 font-semibold ml-1">$150</span>
-              </div>
+              <div><span class="text-gray-400 text-xs line-through">$200</span><span class="text-green-600 font-semibold ml-1">$150</span></div>
               <span class="text-sm text-gray-600">Quedan: 2</span>
             </div>
-            <button class="mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition">
-              Ver detalle
-            </button>
+            <button
+              class="js-view-detail mt-3 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition"
+              data-title="Pizza artesanal"
+              data-image="https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=1080&q=80"
+              data-old="200"
+              data-price="150"
+              data-discount="25% descuento"
+              data-time="Hace 1 hora"
+              data-rating="4.7"
+              data-reviews="42"
+              data-desc="Pizza casera con masa artesanal. Variedades: margarita, vegetariana y pepperoni."
+              data-seller="Pizzería La Artesana"
+              data-seller-avatar="https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=200&q=80"
+              data-pickup="Hoy, 21:30"
+              data-area="Centro"
+              data-contains="Gluten, lácteos"
+              data-category="Pizzería"
+            >Ver detalle</button>
           </div>
         </div>
-        
+
         <!-- Create Listing Card (For Sellers) -->
         <div class="food-card bg-gradient-to-br from-blue-50 to-green-50 rounded-xl overflow-hidden shadow-sm border border-dashed border-green-300 flex flex-col justify-center items-center p-8">
           <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
@@ -414,12 +349,12 @@
           </div>
           <h3 class="font-semibold text-gray-800 mb-2 text-center">Crear nueva oferta</h3>
           <p class="text-gray-600 text-sm text-center mb-4">¡Comparte tus excedentes de comida y ayuda a reducir el desperdicio!</p>
-          <button class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md font-medium transition">
+          <button class="js-create-listing bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md font-medium transition">
             Publicar alimentos
           </button>
         </div>
       </div>
-      
+
       <div class="mt-8 flex justify-center">
         <button class="bg-white text-green-600 border border-green-200 px-6 py-2 rounded-full font-medium hover:bg-green-50 transition flex items-center">
           Cargar más ofertas <i class="fas fa-arrow-down ml-2"></i>
@@ -427,114 +362,76 @@
       </div>
     </section>
 
-    <!-- How it works Section -->
+    <!-- How it works -->
     <section class="mb-16">
       <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">¿Cómo funciona FoodSaver?</h2>
-      
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
-          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-store text-blue-600 text-xl"></i>
-          </div>
+          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-store text-blue-600 text-xl"></i></div>
           <h3 class="font-semibold text-gray-800 mb-2">1. Los negocios publican ofertas</h3>
           <p class="text-gray-600 text-sm">Restaurantes, panaderías y supermercados publican sus excedentes de comida a precios reducidos.</p>
         </div>
-        
         <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
-          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-shopping-bag text-purple-600 text-xl"></i>
-          </div>
+          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-shopping-bag text-purple-600 text-xl"></i></div>
           <h3 class="font-semibold text-gray-800 mb-2">2. Los usuarios reservan</h3>
           <p class="text-gray-600 text-sm">Encuentra y reserva comida de calidad con descuentos de hasta el 70% desde la app.</p>
         </div>
-        
         <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
-          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-hand-holding-heart text-green-600 text-xl"></i>
-          </div>
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-hand-holding-heart text-green-600 text-xl"></i></div>
           <h3 class="font-semibold text-gray-800 mb-2">3. Todos ganan</h3>
           <p class="text-gray-600 text-sm">Tú ahorras dinero, los negocios reducen pérdidas y juntos combatimos el desperdicio de alimentos.</p>
         </div>
       </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- Testimonials -->
     <section class="mb-16 bg-white rounded-xl p-8 shadow-sm border border-gray-100">
       <h2 class="text-2xl font-bold text-gray-800 mb-2 text-center">Lo que dicen nuestros usuarios</h2>
       <p class="text-gray-600 text-center mb-8">Miles de personas ya están salvando alimentos y ahorrando dinero</p>
-      
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg">
           <div class="flex items-center mb-4">
-            <img src="https://images.unsplash.com/photo-1565986829539-cb936ef8805f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwxMHx8VXN1YXJpb3xlbnwwfHx8fDE3NTUwOTAzMzl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Usuario" class="w-12 h-12 rounded-full object-cover">
+            <img src="https://images.unsplash.com/photo-1565986829539-cb936ef8805f?auto=format&fit=crop&w=1080&q=80" alt="Usuario" class="w-12 h-12 rounded-full object-cover">
             <div class="ml-4">
               <h4 class="font-semibold text-gray-800">Carlos Rodríguez</h4>
-              <div class="flex text-yellow-400 text-sm">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
+              <div class="flex text-yellow-400 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
             </div>
           </div>
-          <p class="text-gray-600 text-sm">
-            "¡Increíble app! Ahorro cerca de $500 a la semana comprando comida de calidad que de otra forma se desperdiciaría. Además, la variedad es genial."
-          </p>
+          <p class="text-gray-600 text-sm">"¡Increíble app! Ahorro cerca de $500 a la semana comprando comida de calidad que de otra forma se desperdiciaría. Además, la variedad es genial."</p>
         </div>
-        
+
         <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg">
           <div class="flex items-center mb-4">
-            <img src="https://images.unsplash.com/photo-1566159512424-7a21d3859f3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHw0fHxVc3VhcmlvfGVufDB8fHx8MTc1NTA5MDMzOXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Usuario" class="w-12 h-12 rounded-full object-cover">
+            <img src="https://images.unsplash.com/photo-1566159512424-7a21d3859f3f?auto=format&fit=crop&w=1080&q=80" alt="Usuario" class="w-12 h-12 rounded-full object-cover">
             <div class="ml-4">
               <h4 class="font-semibold text-gray-800">Ana González</h4>
-              <div class="flex text-yellow-400 text-sm">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
+              <div class="flex text-yellow-400 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
             </div>
           </div>
-          <p class="text-gray-600 text-sm">
-            "Como dueña de panadería, FoodSaver me ha ayudado a reducir mis pérdidas y conocer a clientes nuevos que ahora vienen regularmente."
-          </p>
+          <p class="text-gray-600 text-sm">"Como dueña de panadería, FoodSaver me ha ayudado a reducir mis pérdidas y conocer a clientes nuevos que ahora vienen regularmente."</p>
         </div>
-        
+
         <div class="bg-gradient-to-br from-amber-50 to-yellow-50 p-6 rounded-lg">
           <div class="flex items-center mb-4">
-            <img src="https://images.unsplash.com/photo-1598933385397-43259d8c1554?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHw4fHxVc3VhcmlvfGVufDB8fHx8MTc1NTA5MDMzOXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Usuario" class="w-12 h-12 rounded-full object-cover">
+            <img src="https://images.unsplash.com/photo-1598933385397-43259d8c1554?auto=format&fit=crop&w=1080&q=80" alt="Usuario" class="w-12 h-12 rounded-full object-cover">
             <div class="ml-4">
               <h4 class="font-semibold text-gray-800">Miguel Sánchez</h4>
-              <div class="flex text-yellow-400 text-sm">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
+              <div class="flex text-yellow-400 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
             </div>
           </div>
-          <p class="text-gray-600 text-sm">
-            "Como estudiante con presupuesto limitado, esta app ha sido una bendición. Como mejor y más variado mientras ahorro dinero."
-          </p>
+          <p class="text-gray-600 text-sm">"Como estudiante con presupuesto limitado, esta app ha sido una bendición. Como mejor y más variado mientras ahorro dinero."</p>
         </div>
       </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- CTA -->
     <section class="mb-12">
       <div class="bg-gradient-to-r from-teal-500 to-emerald-500 rounded-xl p-8 text-center">
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">¡Únete a la revolución contra el desperdicio de alimentos!</h2>
         <p class="text-white/90 mb-6 max-w-2xl mx-auto">Cada año se desperdician toneladas de comida perfectamente buena. Juntos podemos marcar la diferencia mientras ahorramos dinero.</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <button class="bg-white text-green-600 px-6 py-3 rounded-full font-medium hover:bg-green-50 transition shadow-md">
-            <i class="fas fa-shopping-bag mr-2"></i> Buscar ofertas
-          </button>
-          <button class="bg-green-700 bg-opacity-30 text-white border border-white border-opacity-40 px-6 py-3 rounded-full font-medium hover:bg-opacity-40 transition">
-            <i class="fas fa-store mr-2"></i> Registrar mi negocio
-          </button>
+          <button class="bg-white text-green-600 px-6 py-3 rounded-full font-medium hover:bg-green-50 transition shadow-md"><i class="fas fa-shopping-bag mr-2"></i> Buscar ofertas</button>
+          <button class="bg-green-700 bg-opacity-30 text-white border border-white border-opacity-40 px-6 py-3 rounded-full font-medium hover:bg-opacity-40 transition"><i class="fas fa-store mr-2"></i> Registrar mi negocio</button>
         </div>
       </div>
     </section>
@@ -553,77 +450,57 @@
           </div>
           <p class="text-gray-400 text-sm mb-4">Conectamos a negocios con consumidores para reducir el desperdicio de alimentos, ahorrar dinero y proteger el planeta.</p>
           <div class="flex space-x-4">
-            <a href="javascript:void(0)" class="text-gray-400 hover:text-white transition">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="javascript:void(0)" class="text-gray-400 hover:text-white transition">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="javascript:void(0)" class="text-gray-400 hover:text-white transition">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="javascript:void(0)" class="text-gray-400 hover:text-white transition">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
-        
+
         <div>
           <h3 class="font-semibold mb-4 text-lg">Enlaces rápidos</h3>
           <ul class="space-y-2">
-            <li><a href="javascript:void(0)" class="text-gray-400 hover:text-green-400 transition">Inicio</a></li>
-            <li><a href="javascript:void(0)" class="text-gray-400 hover:text-green-400 transition">Explorar</a></li>
-            <li><a href="javascript:void(0)" class="text-gray-400 hover:text-green-400 transition">Mis Pedidos</a></li>
-            <li><a href="javascript:void(0)" class="text-gray-400 hover:text-green-400 transition">Cómo funciona</a></li>
-            <li><a href="javascript:void(0)" class="text-gray-400 hover:text-green-400 transition">Para Negocios</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-green-400 transition">Inicio</a></li>
+            <li><a href="pedidos.html" class="text-gray-400 hover:text-green-400 transition">Mis Pedidos</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-green-400 transition">Cómo funciona</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-green-400 transition">Para Negocios</a></li>
           </ul>
         </div>
-        
+
         <div>
           <h3 class="font-semibold mb-4 text-lg">Información</h3>
           <ul class="space-y-2">
-            <li><a href="javascript:void(0)" class="text-gray-400 hover:text-green-400 transition">Sobre nosotros</a></li>
-            <li><a href="javascript:void(0)" class="text-gray-400 hover:text-green-400 transition">Blog</a></li>
-            <li><a href="javascript:void(0)" class="text-gray-400 hover:text-green-400 transition">Prensa</a></li>
-            <li><a href="javascript:void(0)" class="text-gray-400 hover:text-green-400 transition">Impacto ambiental</a></li>
-            <li><a href="javascript:void(0)" class="text-gray-400 hover:text-green-400 transition">Carreras</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-green-400 transition">Sobre nosotros</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-green-400 transition">Blog</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-green-400 transition">Prensa</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-green-400 transition">Impacto ambiental</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-green-400 transition">Carreras</a></li>
           </ul>
         </div>
-        
+
         <div>
           <h3 class="font-semibold mb-4 text-lg">Contacto</h3>
           <ul class="space-y-2">
-            <li class="flex items-start">
-              <i class="fas fa-envelope text-gray-400 mt-1 mr-2"></i>
-              <span class="text-gray-400">jabrunostroebel@gmail.com</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-phone text-gray-400 mt-1 mr-2"></i>
-              <span class="text-gray-400">+591 79062583</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-map-marker-alt text-gray-400 mt-1 mr-2"></i>
-              <span class="text-gray-400">Santa Cruz - Bolivia</span>
-            </li>
+            <li class="flex items-start"><i class="fas fa-envelope text-gray-400 mt-1 mr-2"></i><span class="text-gray-400">jabrunostroebel@gmail.com</span></li>
+            <li class="flex items-start"><i class="fas fa-phone text-gray-400 mt-1 mr-2"></i><span class="text-gray-400">+591 79062583</span></li>
+            <li class="flex items-start"><i class="fas fa-map-marker-alt text-gray-400 mt-1 mr-2"></i><span class="text-gray-400">Santa Cruz - Bolivia</span></li>
           </ul>
           <div class="mt-4">
             <h4 class="text-sm font-medium mb-2">Suscríbete al boletín</h4>
             <div class="flex">
               <input type="email" placeholder="Tu correo electrónico" class="bg-gray-700 border-none text-white text-sm rounded-l-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-green-500">
-              <button class="bg-green-500 hover:bg-green-600 text-white px-4 rounded-r-md">
-                <i class="fas fa-paper-plane"></i>
-              </button>
+              <button class="bg-green-500 hover:bg-green-600 text-white px-4 rounded-r-md"><i class="fas fa-paper-plane"></i></button>
             </div>
           </div>
         </div>
       </div>
-      
+
       <div class="mt-8 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between">
         <p class="text-gray-400 text-sm">&copy; 2025 FoodSaver. Todos los derechos reservados.</p>
         <div class="flex space-x-4 mt-4 md:mt-0">
-          <a href="javascript:void(0)" class="text-gray-400 hover:text-green-400 text-sm">Términos y condiciones</a>
-          <a href="javascript:void(0)" class="text-gray-400 hover:text-green-400 text-sm">Privacidad</a>
-          <a href="javascript:void(0)" class="text-gray-400 hover:text-green-400 text-sm">Cookies</a>
+          <a href="#" class="text-gray-400 hover:text-green-400 text-sm">Términos y condiciones</a>
+          <a href="#" class="text-gray-400 hover:text-green-400 text-sm">Privacidad</a>
+          <a href="#" class="text-gray-400 hover:text-green-400 text-sm">Cookies</a>
         </div>
       </div>
     </div>
@@ -634,29 +511,27 @@
     <div class="h-full flex flex-col">
       <div class="bg-green-500 text-white p-4 flex justify-between items-center">
         <h3 class="font-semibold">Chat con el vendedor</h3>
-        <button id="closeChat" class="text-white">
-          <i class="fas fa-times"></i>
-        </button>
+        <button id="closeChat" class="text-white"><i class="fas fa-times"></i></button>
       </div>
       <div class="flex-1 p-4 overflow-auto" id="chatMessages">
         <div class="flex mb-4">
-          <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwxfHxQYXN0ZWxlc3xlbnwwfHx8fDE3NTUxNDU3NDN8MA&ixlib=rb-4.1.0&q=80&w=1080" class="w-8 h-8 rounded-full mr-3" alt="Vendedor">
+          <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1080&q=80" class="w-8 h-8 rounded-full mr-3" alt="Vendedor">
           <div class="bg-gray-100 rounded-lg p-3 max-w-xs">
             <p class="text-sm text-gray-800">¡Hola! Gracias por tu interés en nuestros pasteles. ¿En qué puedo ayudarte?</p>
             <span class="text-xs text-gray-500 mt-1 block">10:32 AM</span>
           </div>
         </div>
-        
+
         <div class="flex mb-4 justify-end">
           <div class="bg-green-100 rounded-lg p-3 max-w-xs">
             <p class="text-sm text-gray-800">Hola! Me gustaría saber si los pasteles contienen huevo o lácteos.</p>
             <span class="text-xs text-gray-500 mt-1 block">10:34 AM</span>
           </div>
-          <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwzfHxQaXp6YXxlbnwwfHx8fDE3NTUxNDU3NTh8MA&ixlib=rb-4.1.0&q=80&w=1080" class="w-8 h-8 rounded-full ml-3" alt="Tú">
+          <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=1080&q=80" class="w-8 h-8 rounded-full ml-3" alt="Tú">
         </div>
-        
+
         <div class="flex mb-4">
-          <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwxfHxQYXN0ZWxlc3xlbnwwfHx8fDE3NTUxNDU3NDN8MA&ixlib=rb-4.1.0&q=80&w=1080" class="w-8 h-8 rounded-full mr-3" alt="Vendedor">
+          <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1080&q=80" class="w-8 h-8 rounded-full mr-3" alt="Vendedor">
           <div class="bg-gray-100 rounded-lg p-3 max-w-xs">
             <p class="text-sm text-gray-800">¡Claro! Los pasteles de chocolate y red velvet contienen ambos. El de zanahoria no contiene lácteos pero sí huevo. También tenemos una opción vegana no incluida en el pack, si te interesa.</p>
             <span class="text-xs text-gray-500 mt-1 block">10:36 AM</span>
@@ -666,9 +541,7 @@
       <div class="p-4 border-t">
         <div class="flex">
           <input type="text" placeholder="Escribe un mensaje..." class="flex-1 border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
-          <button class="bg-green-500 hover:bg-green-600 text-white px-4 rounded-r-md">
-            <i class="fas fa-paper-plane"></i>
-          </button>
+          <button class="bg-green-500 hover:bg-green-600 text-white px-4 rounded-r-md"><i class="fas fa-paper-plane"></i></button>
         </div>
       </div>
     </div>
@@ -679,46 +552,37 @@
     <div class="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-6">
         <h3 class="text-xl font-bold text-gray-800">Crear nueva oferta</h3>
-        <button id="closeModal" class="text-gray-500 hover:text-gray-700">
-          <i class="fas fa-times text-xl"></i>
-        </button>
+        <button id="closeModal" class="text-gray-500 hover:text-gray-700"><i class="fas fa-times text-xl"></i></button>
       </div>
-      
+
       <form>
         <div class="mb-4">
           <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Nombre del producto</label>
           <input type="text" id="name" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Ej: Pack de pasteles variados">
         </div>
-        
+
         <div class="mb-4">
           <label for="description" class="block text-gray-700 text-sm font-medium mb-2">Descripción</label>
           <textarea id="description" rows="4" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Describe tu producto, incluye detalles como ingredientes, alérgenos, etc."></textarea>
-          <button type="button" class="mt-2 text-sm text-green-600 hover:text-green-700 flex items-center">
-            <i class="fas fa-magic mr-1"></i> Generar descripción con IA
-          </button>
+          <button type="button" class="mt-2 text-sm text-green-600 hover:text-green-700 flex items-center"><i class="fas fa-magic mr-1"></i> Generar descripción con IA</button>
         </div>
-        
+
         <div class="mb-4">
           <label for="photo" class="block text-gray-700 text-sm font-medium mb-2">Foto del producto</label>
           <div class="border-2 border-dashed border-gray-300 rounded-md p-6 text-center">
-            <div class="mb-3">
-              <i class="fas fa-cloud-upload-alt text-4xl text-gray-400"></i>
-            </div>
+            <div class="mb-3"><i class="fas fa-cloud-upload-alt text-4xl text-gray-400"></i></div>
             <p class="text-sm text-gray-500 mb-2">Arrastra una imagen o haz clic para seleccionarla</p>
             <p class="text-xs text-gray-400 mb-2">PNG, JPG (max. 5MB)</p>
-            <button type="button" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm px-4 py-2 rounded-md">
-              Seleccionar archivo
-            </button>
+            <button type="button" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm px-4 py-2 rounded-md">Seleccionar archivo</button>
             <input type="file" id="photo" class="hidden">
           </div>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
             <label for="quantity" class="block text-gray-700 text-sm font-medium mb-2">Cantidad disponible</label>
             <input type="number" id="quantity" min="1" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Ej: 5">
           </div>
-          
           <div>
             <label for="price" class="block text-gray-700 text-sm font-medium mb-2">Precio con descuento (MXN)</label>
             <div class="relative">
@@ -727,7 +591,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div>
             <label for="originalPrice" class="block text-gray-700 text-sm font-medium mb-2">Precio original (MXN)</label>
@@ -736,7 +600,6 @@
               <input type="number" id="originalPrice" min="0" step="0.01" class="w-full border border-gray-300 rounded-md pl-8 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Ej: 199.90">
             </div>
           </div>
-          
           <div>
             <label for="category" class="block text-gray-700 text-sm font-medium mb-2">Categoría</label>
             <select id="category" class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
@@ -750,14 +613,10 @@
             </select>
           </div>
         </div>
-        
+
         <div class="flex justify-end">
-          <button type="button" id="cancelCreation" class="bg-white text-gray-600 border border-gray-300 px-6 py-2 rounded-md font-medium hover:bg-gray-50 mr-2">
-            Cancelar
-          </button>
-          <button type="submit" class="bg-green-500 text-white px-6 py-2 rounded-md font-medium hover:bg-green-600">
-            Publicar oferta
-          </button>
+          <button type="button" id="cancelCreation" class="bg-white text-gray-600 border border-gray-300 px-6 py-2 rounded-md font-medium hover:bg-gray-50 mr-2">Cancelar</button>
+          <button type="submit" class="bg-green-500 text-white px-6 py-2 rounded-md font-medium hover:bg-green-600">Publicar oferta</button>
         </div>
       </form>
     </div>
@@ -768,88 +627,78 @@
     <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
       <div class="flex flex-col md:flex-row">
         <div class="md:w-1/2">
-          <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwxfHxQYXN0ZWxlc3xlbnwwfHx8fDE3NTUxNDU3NDN8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Pasteles variados" class="w-full h-full object-cover rounded-l-xl">
+          <img id="detailImage" src="" alt="" class="w-full h-full object-cover rounded-l-xl">
         </div>
-        
+
         <div class="p-6 md:w-1/2">
           <div class="flex justify-between items-start mb-4">
-            <h3 class="text-xl font-bold text-gray-800">Pasteles variados</h3>
-            <button id="closeDetailModal" class="text-gray-500 hover:text-gray-700">
-              <i class="fas fa-times"></i>
-            </button>
+            <h3 id="detailTitle" class="text-xl font-bold text-gray-800">Título</h3>
+            <button id="closeDetailModal" class="text-gray-500 hover:text-gray-700"><i class="fas fa-times"></i></button>
           </div>
-          
+
           <div class="flex items-center mb-4">
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">30% descuento</span>
-            <span class="ml-2 text-xs text-gray-500">Hace 5 horas</span>
+            <span id="detailDiscount" class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">%</span>
+            <span id="detailTime" class="ml-2 text-xs text-gray-500">Hace x</span>
             <div class="ml-auto flex items-center">
               <span class="text-yellow-500 mr-1"><i class="fas fa-star"></i></span>
-              <span class="text-sm text-gray-700">4.6</span>
-              <span class="text-xs text-gray-500 ml-1">(19 reseñas)</span>
+              <span id="detailRatingVal" class="text-sm text-gray-700">0.0</span>
+              <span id="detailReviews" class="text-xs text-gray-500 ml-1">(0 reseñas)</span>
             </div>
           </div>
-          
-          <p class="text-gray-600 text-sm mb-6">
-            Deliciosos pasteles del día. Incluye chocolate, zanahoria y red velvet. Todos recién horneados esta mañana. Perfectos para compartir o llevar a una celebración. El pack incluye 3 porciones individuales, una de cada sabor.
-          </p>
-          
+
+          <p id="detailDesc" class="text-gray-600 text-sm mb-6"></p>
+
           <div class="mb-6">
             <h4 class="text-sm font-semibold text-gray-700 mb-2">Información del vendedor</h4>
             <div class="flex items-center">
-              <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwxfHxQYXN0ZWxlc3xlbnwwfHx8fDE3NTUxNDU3NDN8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Vendedor" class="w-10 h-10 rounded-full object-cover">
+              <img id="detailSellerAvatar" src="" alt="Vendedor" class="w-10 h-10 rounded-full object-cover">
               <div class="ml-3">
-                <p class="text-gray-800 font-medium">Panadería El Buen Sabor</p>
-                <p class="text-gray-500 text-xs">Colonia Roma, CDMX</p>
+                <p id="detailSeller" class="text-gray-800 font-medium"></p>
+                <p id="detailArea" class="text-gray-500 text-xs"></p>
               </div>
-              <button class="ml-auto text-green-600 hover:text-green-700">
-                <i class="fas fa-comments"></i>
-              </button>
+              <button class="ml-auto text-green-600 hover:text-green-700"><i class="fas fa-comments"></i></button>
             </div>
           </div>
-          
+
           <div class="mb-6">
             <h4 class="text-sm font-semibold text-gray-700 mb-2">Detalles</h4>
             <div class="grid grid-cols-2 gap-2">
               <div class="bg-gray-50 p-2 rounded-md">
                 <p class="text-xs text-gray-500">Cantidad disponible</p>
-                <p class="text-gray-800 font-medium">6 packs</p>
+                <p id="detailQtyAvail" class="text-gray-800 font-medium">—</p>
               </div>
               <div class="bg-gray-50 p-2 rounded-md">
                 <p class="text-xs text-gray-500">Recoger antes de</p>
-                <p class="text-gray-800 font-medium">Hoy, 20:00</p>
+                <p id="detailPickup" class="text-gray-800 font-medium"></p>
               </div>
               <div class="bg-gray-50 p-2 rounded-md">
                 <p class="text-xs text-gray-500">Contiene</p>
-                <p class="text-gray-800 font-medium">Gluten, lácteos, huevo</p>
+                <p id="detailContains" class="text-gray-800 font-medium"></p>
               </div>
               <div class="bg-gray-50 p-2 rounded-md">
                 <p class="text-xs text-gray-500">Categoría</p>
-                <p class="text-gray-800 font-medium">Panadería</p>
+                <p id="detailCategory" class="text-gray-800 font-medium"></p>
               </div>
             </div>
           </div>
-          
+
           <div class="flex items-center justify-between mb-6">
             <div>
-              <span class="text-gray-400 text-sm line-through">$180</span>
-              <span class="text-green-600 text-xl font-bold ml-1">$126</span>
+              <span id="detailOld" class="text-gray-400 text-sm line-through"></span>
+              <span id="detailPrice" class="text-green-600 text-xl font-bold ml-1"></span>
             </div>
             <div class="flex items-center">
-              <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center">
-                <i class="fas fa-minus"></i>
-              </button>
-              <span class="mx-4 font-semibold">1</span>
-              <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center">
-                <i class="fas fa-plus"></i>
-              </button>
+              <button id="qtyMinus" class="bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-full flex items-center justify-center btn-qty"><i class="fas fa-minus"></i></button>
+              <span id="qtyVal" class="mx-4 font-semibold">1</span>
+              <button id="qtyPlus" class="bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-full flex items-center justify-center btn-qty"><i class="fas fa-plus"></i></button>
             </div>
           </div>
-          
+
           <div class="flex space-x-4">
             <button class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-md font-medium transition flex items-center justify-center">
               <i class="far fa-bookmark mr-2"></i> Guardar
             </button>
-            <button class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition">
+            <button id="reserveBtn" class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-md font-medium transition">
               Reservar ahora
             </button>
           </div>
@@ -859,120 +708,182 @@
   </div>
 
   <script id="app-script">
-    // Toggle mobile menu
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-    
-    // Toggle user menu
-    const userMenuBtn = document.getElementById('userMenuBtn');
-    const userMenu = document.getElementById('userMenu');
-    
-    userMenuBtn.addEventListener('click', () => {
-      userMenu.classList.toggle('hidden');
-    });
-    
-    // Hide menus when clicking outside
-    document.addEventListener('click', (event) => {
-      if (!userMenuBtn.contains(event.target) && !userMenu.contains(event.target)) {
-        userMenu.classList.add('hidden');
-      }
-      
-      if (!mobileMenuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
-        mobileMenu.classList.add('hidden');
-      }
-    });
-    
-    // Chat panel toggle
-    const closeChat = document.getElementById('closeChat');
-    const chatPanel = document.getElementById('chatPanel');
-    
-    closeChat.addEventListener('click', () => {
-      chatPanel.classList.toggle('open');
-    });
-    
-    // Create Listing Modal
-    const createListingModal = document.getElementById('createListingModal');
-    const closeModal = document.getElementById('closeModal');
-    const cancelCreation = document.getElementById('cancelCreation');
-    
-    function openCreateListingModal() {
-      createListingModal.classList.remove('hidden');
-    }
-    
-    function closeCreateListingModal() {
-      createListingModal.classList.add('hidden');
-    }
-    
-    closeModal.addEventListener('click', closeCreateListingModal);
-    cancelCreation.addEventListener('click', closeCreateListingModal);
-    
-    // Detail Modal
-    const detailModal = document.getElementById('detailModal');
-    const closeDetailModal = document.getElementById('closeDetailModal');
-    
-    function openDetailModal() {
-      detailModal.classList.remove('hidden');
-    }
-    
-    function closeDetailViewModal() {
-      detailModal.classList.add('hidden');
-    }
-    
-    closeDetailModal.addEventListener('click', closeDetailViewModal);
-    
-    // Add event listener to all "Ver detalle" buttons
-    const viewDetailButtons = document.querySelectorAll('.food-card button');
-    viewDetailButtons.forEach(button => {
-      button.addEventListener('click', openDetailModal);
-    });
-    
-    // Add event listener to "Create Listing" button
-    const createListingButton = document.querySelector('.food-card:nth-child(5) button');
-    if (createListingButton) {
-      createListingButton.addEventListener('click', openCreateListingModal);
-    }
-    
-    // Close modals when clicking outside
-    window.addEventListener('click', (e) => {
-      if (e.target === createListingModal) {
-        closeCreateListingModal();
-      }
-      if (e.target === detailModal) {
-        closeDetailViewModal();
-      }
-    });
-    
-    // Simulated API endpoints for prototype
-    const apiEndpoints = {
-      getListings: () => {
-        return {
-          success: true,
-          message: "This is a prototype. Connect to a real API to see real data."
-        };
-      },
-      createListing: (data) => {
-        return {
-          success: true,
-          message: "This is a prototype. Connect to a real API to create listings."
-        };
-      },
-      getOrders: () => {
-        return {
-          success: true,
-          message: "This is a prototype. Connect to a real API to see real orders."
-        };
-      },
-      getStats: () => {
-        return {
-          success: true,
-          message: "This is a prototype. Connect to a real API to see real statistics."
-        };
-      }
+    // Helpers
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => document.querySelectorAll(sel);
+    const money = n => '$' + Number(n||0).toLocaleString('es-MX', {maximumFractionDigits:0});
+    const pad = n => n.toString().padStart(2,'0');
+    const genId = () => {
+      const d = new Date();
+      return `FS-${d.getFullYear().toString().slice(2)}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
     };
+    const LS_KEY = 'fs_orders';
+
+    // Toggle mobile menu
+    const mobileMenuBtn = $('#mobileMenuBtn');
+    const mobileMenu = $('#mobileMenu');
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    // Toggle user menu
+    const userMenuBtn = $('#userMenuBtn');
+    const userMenu = $('#userMenu');
+    if (userMenuBtn && userMenu) {
+      userMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); userMenu.classList.toggle('hidden'); });
+      document.addEventListener('click', (e) => { if (!userMenu.contains(e.target) && !userMenuBtn.contains(e.target)) userMenu.classList.add('hidden'); });
+    }
+
+    // Chat panel toggle
+    const closeChat = $('#closeChat');
+    const chatPanel = $('#chatPanel');
+    if (closeChat && chatPanel) closeChat.addEventListener('click', () => chatPanel.classList.toggle('open'));
+
+    // Create Listing Modal
+    const createListingModal = $('#createListingModal');
+    const closeModal = $('#closeModal');
+    const cancelCreation = $('#cancelCreation');
+    function openCreateListingModal(){ createListingModal.classList.remove('hidden'); }
+    function closeCreateListingModal(){ createListingModal.classList.add('hidden'); }
+    if (closeModal) closeModal.addEventListener('click', closeCreateListingModal);
+    if (cancelCreation) cancelCreation.addEventListener('click', closeCreateListingModal);
+    const createListingButton = $('.js-create-listing');
+    if (createListingButton) createListingButton.addEventListener('click', openCreateListingModal);
+
+    // Detail Modal
+    const detailModal = $('#detailModal');
+    const closeDetailModal = $('#closeDetailModal');
+    function openDetailModal(){ detailModal.classList.remove('hidden'); }
+    function closeDetailViewModal(){ detailModal.classList.add('hidden'); }
+    if (closeDetailModal) closeDetailModal.addEventListener('click', closeDetailViewModal);
+    window.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeDetailViewModal(); });
+    window.addEventListener('click', (e) => {
+      if (e.target === createListingModal) closeCreateListingModal();
+      if (e.target === detailModal) closeDetailViewModal();
+    });
+
+    // Referencias del modal
+    const refs = {
+      img: $('#detailImage'),
+      title: $('#detailTitle'),
+      discount: $('#detailDiscount'),
+      time: $('#detailTime'),
+      rating: $('#detailRatingVal'),
+      reviews: $('#detailReviews'),
+      desc: $('#detailDesc'),
+      sellerAvatar: $('#detailSellerAvatar'),
+      seller: $('#detailSeller'),
+      area: $('#detailArea'),
+      qtyAvail: $('#detailQtyAvail'),
+      pickup: $('#detailPickup'),
+      contains: $('#detailContains'),
+      category: $('#detailCategory'),
+      old: $('#detailOld'),
+      price: $('#detailPrice'),
+      qtyMinus: $('#qtyMinus'),
+      qtyPlus: $('#qtyPlus'),
+      qtyVal: $('#qtyVal'),
+      reserveBtn: $('#reserveBtn'),
+    };
+
+    let currentDetail = null; // datos actuales para reservar
+
+    // Click en "Ver detalle" (rellena modal dinámicamente)
+    $$('.js-view-detail').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const d = btn.dataset;
+        currentDetail = {
+          title: d.title,
+          image: d.image,
+          old: Number(d.old || 0),
+          price: Number(d.price || 0),
+          discount: d.discount || '',
+          time: d.time || '',
+          rating: d.rating || '0.0',
+          reviews: d.reviews || '0',
+          desc: d.desc || '',
+          seller: d.seller || '',
+          sellerAvatar: d.sellerAvatar || d.image,
+          pickup: d.pickup || 'Hoy',
+          area: d.area || '',
+          contains: d.contains || '',
+          category: d.category || '',
+          qtyAvail: d.qty || '—'
+        };
+
+        // Pintar modal
+        refs.img.src = currentDetail.image;
+        refs.img.alt = currentDetail.title;
+        refs.title.textContent = currentDetail.title;
+        refs.discount.textContent = currentDetail.discount;
+        refs.time.textContent = currentDetail.time;
+        refs.rating.textContent = currentDetail.rating;
+        refs.reviews.textContent = `(${currentDetail.reviews} reseñas)`;
+        refs.desc.textContent = currentDetail.desc;
+        refs.sellerAvatar.src = currentDetail.sellerAvatar;
+        refs.seller.textContent = currentDetail.seller;
+        refs.area.textContent = currentDetail.area;
+        refs.qtyAvail.textContent = currentDetail.qtyAvail;
+        refs.pickup.textContent = currentDetail.pickup;
+        refs.contains.textContent = currentDetail.contains;
+        refs.category.textContent = currentDetail.category;
+        refs.old.textContent = currentDetail.old ? money(currentDetail.old) : '';
+        refs.price.textContent = money(currentDetail.price);
+        refs.qtyVal.textContent = '1';
+
+        openDetailModal();
+      });
+    });
+
+    // Cantidad
+    refs.qtyMinus.addEventListener('click', () => {
+      const v = Math.max(1, Number(refs.qtyVal.textContent) - 1);
+      refs.qtyVal.textContent = v;
+    });
+    refs.qtyPlus.addEventListener('click', () => {
+      const v = Number(refs.qtyVal.textContent) + 1;
+      refs.qtyVal.textContent = v;
+    });
+
+    // Crear pedido en localStorage
+    function createOrderLS(data){
+      const o = {
+        id: genId(),
+        status:'Pendiente',
+        sellerName: data.sellerName,
+        sellerAvatar: data.sellerAvatar,
+        productTitle: data.productTitle + (data.qty && data.qty>1 ? ` x${data.qty}`:''),
+        img: data.img,
+        pickup: data.pickup || 'Hoy',
+        area: data.area || '',
+        oldPrice: Number(data.oldPrice||0) * (data.qty||1),
+        price: Number(data.price||0) * (data.qty||1),
+        createdAt: new Date().toISOString(),
+        metaDate: new Date().toLocaleDateString('es-MX', {day:'2-digit', month:'short'}).replace('.', '') + ', ' +
+                  new Date().toLocaleTimeString('es-MX', {hour:'2-digit', minute:'2-digit'})
+      };
+      const arr = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+      arr.unshift(o);
+      localStorage.setItem(LS_KEY, JSON.stringify(arr));
+      return o.id;
+    }
+
+    // Reservar ahora
+    refs.reserveBtn.addEventListener('click', () => {
+      if (!currentDetail) return;
+      const qty = Number(refs.qtyVal.textContent) || 1;
+      createOrderLS({
+        sellerName: currentDetail.seller,
+        sellerAvatar: currentDetail.sellerAvatar,
+        productTitle: currentDetail.title,
+        img: currentDetail.image,
+        pickup: currentDetail.pickup,
+        area: currentDetail.area,
+        oldPrice: currentDetail.old,
+        price: currentDetail.price,
+        qty
+      });
+      closeDetailViewModal();
+      window.location.href = 'pedidos.html?new=1#tab-pendientes';
+    });
   </script>
 </body>
 </html>
